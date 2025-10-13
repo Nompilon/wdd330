@@ -1,0 +1,224 @@
+:root {
+    --text: #FFFFFF;
+    --text1: rgb(0, 0, 0);
+    --heading-background-color:#27AE60;
+    --heading-background-color1: #F39C12;
+    --heading-background-color2: #1ABC9C;
+
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100%;
+
+}
+
+body {
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+#main-container {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
+
+}
+header {
+    grid-area: header;
+}
+
+main {
+    grid-area: main;
+    padding-bottom: 4rem;
+}
+
+footer {
+    grid-area: footer;
+}
+ul{
+    text-decoration: none;
+    list-style: none;
+}
+
+header {
+    background-color: var(--heading-background-color2);
+    color: var(--text1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+}
+.menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+.menu-btn {
+    background-color: var(--heading-background-color);
+    color: var(--text);
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.menu-btn:hover {
+    background-color: var(--heading-background-color1);
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 45px;
+    right: auto;
+    background-color: var(--heading-background-color1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    list-style: none;
+    padding: 8px 0;
+    min-width: 150px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.dropdown-menu li {
+    text-align: left;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 16px;
+    color: var(--text1);
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-menu li a:hover {
+    background-color: var(--heading-background-color2);
+    color: var(--text);
+}
+
+
+.menu-container.active .dropdown-menu {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--heading-background-color);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.profile-label:hover .profile-img {
+    transform: scale(1.05);
+}
+.summary {
+    background-color: var(--heading-background-color1);
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 2rem auto;
+    max-width: 300px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.add-meal-btn {
+    background-color: var(--heading-background-color);
+    color: var(--text1);
+    border: none;
+    max-width: 300px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 1rem 0;
+    transition: 0.3s;
+}
+
+.add-meal-btn:hover {
+    background-color: var(--heading-background-color1);
+}
+
+.meal-log {
+    background-color: var(--heading-background-color1);
+    color: var(--text1);
+    padding: 1rem;
+    border-radius: 10px;
+    max-width: 350px;
+    margin:1rem auto;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.meal-log ul li {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+}
+
+.meal-log a {
+    color: var(--text1);
+    font-weight: bold;
+}
+footer {
+    grid-area: footer;
+    background-color: var(--heading-background-color2);
+    border-top: 2px solid black;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.footer-nav img {
+    width: 28px;
+    height: auto;
+}
+.top-card{
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+}
+.home-main{
+    text-align: center;
+}

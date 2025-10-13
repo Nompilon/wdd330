@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="WDD330-Web Fronted Development II - Ngwenya Nompilo - NutriTrack Hub web application project">
+    <meta name="author" content="Nompilo Ngwenya">
+    <title>NutriTrack Hub | Home</title>
+    <meta property="og:title" content="NutriTrack Hub - Home page">
+    <meta property="og:description" content="Home page for the LNutriTrack Hub Project - Nompilo Ngwenya">
+    <meta property="og:url" content="https://nompilon.github.io/wdd330/final-project/index">
+    <meta property="og:image" content="https://nompilon.github.io/wdd231/project/images/hero-medium.webp">
+    <link rel="stylesheet" href="styles/small-styles.css">
+    <link rel="stylesheet" href="styles/medium-styles.css">
+    <link rel="stylesheet" href="styles/large-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/nutrition_icon_136342.svg">
+    <script src="scripts/navigation.js" defer></script>
+    <script src="scripts/storage.js" defer></script>
+</head>
+<body>
+    <div id="main-container">
+        <header class=" top-card">
+            <div class="menu-container">
+                <button class="menu-btn">☰</button>
+                <ul class="dropdown-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tracker.html">Track Meals</a></li>
+                    <li><a href="progress.html">Progress</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <h1>NutriTrack Hub <img src="images/nutrition_icon_136342.svg"></h1>
+            <div class="profile-container">
+                <label for="profile-upload" class="profile-label">
+                    <img src="images/default-profile-picture.svg" alt="User profile" id="profile-img" class="profile-img">
+                </label>
+                <input type="file" id="profile-upload" accept="image/*" hidden>
+            </div>
+        </header>
+        <main>
+            <section class="home-main">
+                <section class="summary">
+                    <h2>Daily Nutrients Summary</h2>
+                    <p>Calories: 1800 / 2000 kcal</p>
+                    <p>Protein: 120 / 150 g</p>
+                    <p>Carbs: 200 / 250 g</p>
+                    <p>Fat: 60 / 70 g</p>
+                </section>
+                
+                <button class="add-meal-btn">Add Meal</button>
+                
+                <section class="meal-log">
+                    <h2>Meal Log</h2>
+                    <ul>
+                        <li>Breakfast: Oatmeal, 1 cup <a href="#">Edit</a></li>
+                        <li>Snack: Small banana <a href="#">Edit</a></li>
+                        <li>Lunch: Chicken salad <a href="#">Edit</a></li>
+                        <li>Dinner: Salmon & Veggies <a href="#">Edit</a></li>
+                    </ul>
+                </section>
+            </section>
+        </main>
+        <footer class="bottom-nav">
+            <nav>
+                <ul class="footer-nav">
+                    <li><a href="#"><img src="images/house-chimney-solid.svg" alt="Home"></a></li>
+                    <li><a href="#"><img src="images/arrow-trend-up-solid.svg" alt="Trends"></a></li>
+                    <li><a href="#"><img src="images/bullseye-solid.svg" alt="Goals"></a></li>
+                    <li><a href="#"><img src="images/gears-solid.svg" alt="Settings"></a></li>
+                </ul>
+            </nav>
+        </footer>
+    </div>
+</body>
+
+</html>
