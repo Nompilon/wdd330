@@ -21,6 +21,7 @@
     <link rel="icon" href="images/nutrition_icon_136342.svg">
     <script src="scripts/navigation.js" defer></script>
     <script src="scripts/storage.js" defer></script>
+    <script src="scripts/tracker.js" defer></script>
 </head>
 <body>
     <div id="main-container">
@@ -54,7 +55,32 @@
                 </section>
                 
                 <button class="add-meal-btn">Add Meal</button>
-                
+                <!-- Meal Modal -->
+                <div id="meal-modal" class="meal-modal hidden">
+                    <div class="meal-modal-content">
+                        <span id="close-meal-modal" class="close-btn">&times;</span>
+                        <h2>Log a Meal</h2>
+                        <form id="meal-form">
+                            <label for="meal-type">Meal Type:</label>
+                            <select id="meal-type" required>
+                                <option value="Breakfast">Breakfast</option>
+                                <option value="Snack">Snack</option>
+                                <option value="Lunch">Lunch</option>
+                                <option value="Dinner">Dinner</option>
+                            </select>
+                        
+                            <label for="food-name">Food Item:</label>
+                            <input type="text" id="food-name" placeholder="e.g., Oatmeal" required list="food-suggestions">
+                            <datalist id="food-suggestions"></datalist>
+                        
+                            <label for="portion">Portion (grams):</label>
+                            <input type="number" id="portion" placeholder="e.g., 100" required>
+                        
+                            <button type="submit">Add Meal</button>
+                        </form>
+
+                    </div>
+                </div>
                 <section class="meal-log">
                     <h2>Meal Log</h2>
                     <ul>
@@ -65,6 +91,7 @@
                     </ul>
                 </section>
             </section>
+
         </main>
         <footer class="bottom-nav">
             <nav>
