@@ -9,7 +9,7 @@
     <meta name="author" content="Nompilo Ngwenya">
     <title>NutriTrack Hub | Home</title>
     <meta property="og:title" content="NutriTrack Hub - Home page">
-    <meta property="og:description" content="Home page for the LNutriTrack Hub Project - Nompilo Ngwenya">
+    <meta property="og:description" content="Home page for the NutriTrack Hub Project - Nompilo Ngwenya">
     <meta property="og:url" content="https://nompilon.github.io/wdd330/final-project/index">
     <meta property="og:image" content="https://nompilon.github.io/wdd231/project/images/hero-medium.webp">
     <link rel="stylesheet" href="styles/small-styles.css">
@@ -23,38 +23,83 @@
     <script src="scripts/storage.js" defer></script>
     <script src="scripts/tracker.js" defer></script>
 </head>
+
 <body>
     <div id="main-container">
-        <header class=" top-card">
-            <div class="menu-container">
-                <button class="menu-btn">☰</button>
-                <ul class="dropdown-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="tracker.html">Track Meals</a></li>
-                    <li><a href="progress.html">Progress</a></li>
-                    <li><a href="settings.html">Settings</a></li>
-                    <li><a href="about.html">About</a></li>
-                </ul>
-            </div>
-            <h1>NutriTrack Hub <img src="images/nutrition_icon_136342.svg"></h1>
+
+        <!-- ✅ Sidebar (only visible on large view) -->
+        <nav class="menu-container sidebar">
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="tracker.html">Track Meals</a></li>
+                <li><a href="progress.html">Progress</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+
+        <!-- ✅ Mobile/Small menu (hidden on large view) -->
+        <nav class="menu-container mobile-menu">
+            <button class="menu-btn">☰</button>
+            <ul class="dropdown-menu">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="tracker.html">Track Meals</a></li>
+                <li><a href="progress.html">Progress</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+
+        <!-- Header -->
+        <header class="top-card">
+            <h1>NutriTrack Hub <img src="images/nutrition_icon_136342.svg" alt=""></h1>
             <div class="profile-container">
                 <label for="profile-upload" class="profile-label">
-                    <img src="images/default-profile-picture.svg" alt="User profile" id="profile-img" class="profile-img">
+                    <img src="images/default-profile-picture.svg" alt="User profile" id="profile-img"
+                        class="profile-img">
                 </label>
                 <input type="file" id="profile-upload" accept="image/*" hidden>
             </div>
         </header>
+
+        <!-- Main Content -->
         <main>
             <section class="home-main">
                 <section class="summary">
                     <h2>Daily Nutrients Summary</h2>
-                    <p>Calories: 1800 / 2000 kcal</p>
-                    <p>Protein: 120 / 150 g</p>
-                    <p>Carbs: 200 / 250 g</p>
-                    <p>Fat: 60 / 70 g</p>
-                </section>
                 
+                    <div class="nutrient">
+                        <p><strong>Calories:</strong> 1800 / 2000 kcal</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                
+                    <div class="nutrient">
+                        <p><strong>Protein:</strong> 120 / 150 g</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                
+                    <div class="nutrient">
+                        <p><strong>Carbs:</strong> 200 / 250 g</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                
+                    <div class="nutrient">
+                        <p><strong>Fat:</strong> 60 / 70 g</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                </section>
+
+
                 <button class="add-meal-btn">Add Meal</button>
+
                 <!-- Meal Modal -->
                 <div id="meal-modal" class="meal-modal hidden">
                     <div class="meal-modal-content">
@@ -68,19 +113,20 @@
                                 <option value="Lunch">Lunch</option>
                                 <option value="Dinner">Dinner</option>
                             </select>
-                        
+
                             <label for="food-name">Food Item:</label>
-                            <input type="text" id="food-name" placeholder="e.g., Oatmeal" required list="food-suggestions">
+                            <input type="text" id="food-name" placeholder="e.g., Oatmeal" required
+                                list="food-suggestions">
                             <datalist id="food-suggestions"></datalist>
-                        
+
                             <label for="portion">Portion (grams):</label>
                             <input type="number" id="portion" placeholder="e.g., 100" required>
-                        
+
                             <button type="submit">Add Meal</button>
                         </form>
-
                     </div>
                 </div>
+
                 <section class="meal-log">
                     <h2>Meal Log</h2>
                     <ul>
@@ -91,8 +137,9 @@
                     </ul>
                 </section>
             </section>
-
         </main>
+
+        <!-- Bottom Nav (for mobile) -->
         <footer class="bottom-nav">
             <nav>
                 <ul class="footer-nav">
@@ -103,6 +150,7 @@
                 </ul>
             </nav>
         </footer>
+
     </div>
 </body>
 

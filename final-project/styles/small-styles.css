@@ -68,10 +68,17 @@ header {
     position: relative;
     display: inline-block;
 }
+.menu-container ul {
+    display: none;
+    /* hidden until hamburger is clicked */
+}
 
+.menu-container.sidebar {
+    display: none;
+}
 .menu-btn {
     background-color: var(--heading-background-color);
-    color: var(--text);
+    color: var(--text1);
     font-size: 24px;
     border: none;
     cursor: pointer;
@@ -83,7 +90,10 @@ header {
 .menu-btn:hover {
     background-color: var(--heading-background-color1);
 }
-
+.sidebar {
+    display: none;
+    /* hidden by default on small screens */
+}
 .dropdown-menu {
     display: none;
     position: absolute;

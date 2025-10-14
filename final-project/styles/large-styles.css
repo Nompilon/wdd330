@@ -1,92 +1,241 @@
 @media screen and (min-width: 1024px) {
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--heading-background-color);
+        color: #333;
+    }
+
+    /* ===== Layout Grid ===== */
     #main-container {
         display: grid;
-        grid-template-columns: 250px 1fr;
         grid-template-areas:
-            "sidebar main"
-            "sidebar footer";
-        gap: 1rem;
+            "sidebar header"
+            "sidebar main";
+        grid-template-columns: 220px 1fr;
+        grid-template-rows: auto 1fr;
+        height: 100vh;
     }
 
-    header {
-        grid-column: 1 / -1;
-        /* header spans full width */
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 2rem;
-    }
-
-    main {
-        grid-area: main;
-        padding: 2rem;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    footer {
-        grid-column: 2 / -1;
-        /* footer aligned with main content */
-        position: relative;
-        /* no longer fixed for desktop */
-        width: auto;
-        padding: 1rem 2rem;
-    }
-
-   .menu-container {
-      display: none;
-      /* hide hamburger */
-    }
-
-    .sidebar {
+    /* ===== Sidebar ===== */
+    .menu-container {
         grid-area: sidebar;
         background-color: var(--heading-background-color2);
-        padding: 2rem 1rem;
-        min-height: 100vh;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        padding-top: 2rem;
+        overflow-y: auto;
+        z-index: 999;
+    }
+
+    .menu-container .menu-btn {
+        display: none;
+    }
+
+    .menu-container ul {
         display: flex;
         flex-direction: column;
         gap: 1rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
     }
 
-    .sidebar a {
-        color: var(--text1);
+    .menu-container ul li a {
         text-decoration: none;
-        font-weight: bold;
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        transition: background-color 0.2s ease;
+        color: #333;
+        font-weight: 500;
+        padding: 0.75rem 1rem;
+        display: block;
+        border-radius: 10px;
+        transition: background-color 0.3s;
+    }
+    .menu-container.sidebar {
+        display: flex;
     }
 
-    .sidebar a:hover {
-        background-color: var(--heading-background-color1);
-        color: var(--text);
+    .menu-container.mobile-menu,
+    .bottom-nav {
+        display: none;
     }
-    .home-main {
+    .menu-container ul li a:hover {
+        background-color: #d8f3dc;
+    }
+    .menu-container ul li a.active {
+        background-color: #b7e4c7;
+        font-weight: 600;
+    }
+    /* ===== Header ===== */
+    header.top-card {
+        grid-area: header;
         display: flex;
         justify-content: space-between;
-        align-items: flex-start;
-        gap: 2rem;
-        width: 100%;
+        align-items: center;
+        padding: 20px 30px;
+        background-color: var(--heading-background-color1);
+        border-bottom: 1px solid #ddd;
+        position: sticky;
+        top: 0;
+        z-index: 10;
     }
 
-    .summary,
-    .meal-log {
-        max-width: 400px;
-        flex: 1;
+    /* ===== Main Content ===== */
+    main {
+        grid-area: main;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
     }
 
-    .add-meal-btn {
-        align-self: flex-start;
+    /* Hide bottom navigation */
+    .bottom-nav {
+        display: none;
     }
+
     header h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: 10px;
     }
 
     .profile-container {
-        margin-left: auto;
+        position: relative;
     }
+
+    .profile-label {
+        cursor: pointer;
+    }
+
+    .profile-img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+        /* Daily Nutrients Summary */
+    .summary {
+        background-color: #fff;
+        padding: 20px 25px;
+        border-radius: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .summary h2 {
+        margin-top: 0;
+        font-size: 1.5rem;
+    }
+
+    .summary p {
+        margin: 10px 0;
+        font-weight: 500;
+    }
+
+    /* Meal Log */
+    .meal-log {
+        background-color: #fff;
+        padding: 20px 25px;
+        border-radius: 12px;
+    }
+
+    .meal-log h2 {
+        margin-top: 0;
+        font-size: 1.5rem;
+    }
+
+    .meal-log ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .meal-log li {
+        margin: 12px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Add Meal button */
+    .add-meal-btn {
+        background-color: #ff7a00;
+        color: #fff;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s;
+        width: max-content;
+    }
+
+    .add-meal-btn:hover {
+        background-color: #e66c00;
+    }
+
+    /* Meal modal */
+    .meal-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 20;
+    }
+
+    .meal-modal-content {
+        background-color: #fff;
+        padding: 25px 30px;
+        border-radius: 12px;
+        width: 500px;
+        max-width: 90%;
+        position: relative;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    /* Bottom navigation - hidden on large screens */
+    .bottom-nav {
+        display: none;
+    }
+    /* ===== Nutrient Progress Bars (Large View Only) ===== */
+    .nutrient {
+        margin-bottom: 1.2rem;
+    }
+    
+    .nutrient p {
+        margin: 0 0 0.4rem 0;
+        font-weight: 500;
+    }
+    
+    .progress-bar {
+        width: 100%;
+        height: 10px;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .progress-fill {
+        height: 100%;
+        background-color: #ff7a00;
+        /* bright orange */
+        border-radius: 5px 0 0 5px;
+        transition: width 0.4s ease;
+    }
+
+
 }

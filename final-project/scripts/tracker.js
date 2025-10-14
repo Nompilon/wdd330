@@ -152,7 +152,7 @@ mealForm.addEventListener('submit', async (e) => {
 // ========================
 function loadMeals() {
     const meals = JSON.parse(localStorage.getItem("meals")) || [];
-    mealLog.innerHTML = ""; // Clear list before repopulating
+    mealLog.innerHTML = ""; 
 
     let totals = { calories: 0, protein: 0, carbs: 0, fat: 0 };
 
@@ -164,14 +164,15 @@ function loadMeals() {
 
         const li = document.createElement("li");
         li.innerHTML = `
-            ${m.mealType}: ${m.foodName} (${m.portion}g) — ${m.calories} kcal, P:${m.protein}g C:${m.carbs}g F:${m.fat}g
+            ${m.mealType}: ${m.foodName} (${m.portion}g) — ${m.calories} kcal, 
+            P:${m.protein}g C:${m.carbs}g F:${m.fat}g
             <span class="meal-actions">
                 <a href="#" class="edit-meal">Edit</a> | 
                 <a href="#" class="delete-meal">Delete</a>
             </span>
         `;
 
-        // Edit meal
+      
         li.querySelector(".edit-meal").addEventListener("click", () => {
             document.getElementById('meal-type').value = m.mealType;
             document.getElementById('food-name').value = m.foodName;
@@ -180,7 +181,7 @@ function loadMeals() {
             editingIndex = index;
         });
 
-        // Delete meal
+        
         li.querySelector(".delete-meal").addEventListener("click", () => {
             meals.splice(index, 1);
             localStorage.setItem("meals", JSON.stringify(meals));
@@ -190,12 +191,31 @@ function loadMeals() {
         mealLog.appendChild(li);
     });
 
-    // Update summary
-    summaryCalories.textContent = `Calories: ${totals.calories} / 2000 kcal`;
-    summaryProtein.textContent = `Protein: ${totals.protein} / 150 g`;
-    summaryCarbs.textContent = `Carbs: ${totals.carbs} / 250 g`;
-    summaryFat.textContent = `Fat: ${totals.fat} / 70 g`;
+    
+    const nutrientData = [
+        { key: "calories", max: 2000, unit: "kcal" },
+        { key: "protein", max: 150, unit: "g" },
+        { key: "carbs", max: 250, unit: "g" },
+        { key: "fat", max: 70, unit: "g" }
+    ];
+
+    const nutrientDivs = document.querySelectorAll(".summary .nutrient");
+
+    nutrientData.forEach((nutrient, index) => {
+        const total = totals[nutrient.key].toFixed(1);
+        const percent = Math.min((total / nutrient.max) * 100, 100).toFixed(0);
+        const nutrientDiv = nutrientDivs[index];
+
+        
+        const p = nutrientDiv.querySelector("p");
+        p.innerHTML = `<strong>${nutrient.key.charAt(0).toUpperCase() + nutrient.key.slice(1)}:</strong> ${total} / ${nutrient.max} ${nutrient.unit}`;
+
+        
+        const bar = nutrientDiv.querySelector(".progress-fill");
+        bar.style.width = `${percent}%`;
+    });
 }
 
-// Load meals and summary on page load
+
+
 window.addEventListener("DOMContentLoaded", loadMeals);
