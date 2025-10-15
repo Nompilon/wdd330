@@ -225,7 +225,7 @@ header {
 }
 
 .meal-modal-content {
-    background: #fff;
+    background: var(--text);
     padding: 2rem;
     border-radius: 12px;
     width: 90%;
@@ -244,7 +244,7 @@ header {
 }
 footer {
     background-color: var(--heading-background-color2);
-    border-top: 2px solid black;
+    /*border-top: 2px solid black;*/
     position: fixed;
     bottom: 0;
     left: 0;
@@ -262,10 +262,10 @@ footer {
     width: 28px;
     height: auto;
 }
-.top-card{
+/*.top-card{
     border-bottom: 2px solid black;
     border-top: 2px solid black;
-}
+}*/
 .home-main{
     text-align: center;
 }

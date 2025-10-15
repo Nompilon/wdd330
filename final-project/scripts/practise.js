@@ -27,7 +27,7 @@ closeModal.addEventListener('click', () => {
 // ========================
 // USDA API configuration
 // ========================
-const API_KEY = "l3MBTuUIJoqsUO9IvnLe8wKSDqT6dRQaTyLs7GTE";
+const API_KEY = "l3MBTuUIJoqsUO9IvnLe8wKSDqT6dRQaTyLs7GTE"; // Replace with your key
 const BASE_URL = "https://api.nal.usda.gov/fdc/v1/foods/search";
 
 // ========================
@@ -74,35 +74,105 @@ async function getFoodData(foodName) {
 
 const foodInput = document.getElementById("food-name");
 const foodSuggestions = document.getElementById("food-suggestions");
+const nutrientDisplay = document.getElementById("nutrient-info");
 let suggestionTimeout;
-
 foodInput.addEventListener("input", () => {
     clearTimeout(suggestionTimeout);
     const query = foodInput.value.trim();
-    if (query.length < 2) return; // wait until 2 chars
+    nutrientDisplay.innerHTML = ""; // clear nutrient info on new input
+    if (query.length < 2) return;
 
-    // Delay API call to reduce requests
     suggestionTimeout = setTimeout(async () => {
         try {
-            const response = await fetch(
-                `https://api.nal.usda.gov/fdc/v1/foods/search?query=${encodeURIComponent(query)}&pageSize=10&api_key=${API_KEY}`
-            );
-            const data = await response.json();
             foodSuggestions.innerHTML = "";
 
-            if (data.foods && data.foods.length > 0) {
-                data.foods.forEach(f => {
-                    const option = document.createElement("option");
-                    option.value = f.description; // food name from USDA
-                    foodSuggestions.appendChild(option);
-                });
+            // --- 1. USDA API ---
+            const usdaResponse = await fetch(
+                `https://api.nal.usda.gov/fdc/v1/foods/search?query=${encodeURIComponent(query)}&pageSize=10&api_key=${API_KEY}`
+            );
+            const usdaData = await usdaResponse.json();
+            let suggestions = [];
+
+            if (usdaData.foods && usdaData.foods.length > 0) {
+                suggestions = usdaData.foods.map(f => ({
+                    name: f.description,
+                    nutrients: extractUsdaNutrients(f)
+                }));
             }
+
+            // --- 2. Edamam API (if fewer than 10 results) ---
+            if (suggestions.length < 10) {
+                const edamamResponse = await fetch(
+                    `https://api.edamam.com/api/food-database/v2/parser?ingr=${encodeURIComponent(query)}&app_id=${EDAMAM_APP_ID}&app_key=${EDAMAM_APP_KEY}`
+                );
+                const edamamData = await edamamResponse.json();
+
+                if (edamamData.hints && edamamData.hints.length > 0) {
+                    const edamamSuggestions = edamamData.hints
+                        .map(h => ({
+                            name: h.food.label,
+                            nutrients: extractEdamamNutrients(h.food)
+                        }))
+                        .slice(0, 10 - suggestions.length);
+                    suggestions = suggestions.concat(edamamSuggestions);
+                }
+            }
+
+            // --- 3. Update datalist ---
+            suggestions.forEach(item => {
+                const option = document.createElement("option");
+                option.value = item.name;
+                option.dataset.nutrients = JSON.stringify(item.nutrients); // store nutrients
+                foodSuggestions.appendChild(option);
+            });
+
         } catch (err) {
             console.error("Error fetching food suggestions:", err);
         }
-    }, 300); // 300ms debounce
+    }, 300);
 });
 
+// --- Helper functions ---
+function extractUsdaNutrients(food) {
+    const nutrients = {};
+    if (food.foodNutrients) {
+        food.foodNutrients.forEach(n => {
+            if (n.nutrientName.includes("Energy")) nutrients.calories = Math.round(n.value);
+            if (n.nutrientName.includes("Protein")) nutrients.protein = n.value;
+            if (n.nutrientName.includes("Carbohydrate")) nutrients.carbs = n.value;
+            if (n.nutrientName.includes("Total lipid") || n.nutrientName.includes("Fat")) nutrients.fat = n.value;
+        });
+    }
+    return nutrients;
+}
+
+function extractEdamamNutrients(food) {
+    const nutrients = food.nutrients || {};
+    return {
+        calories: Math.round(nutrients.ENERC_KCAL || 0),
+        protein: nutrients.PROCNT || 0,
+        carbs: nutrients.CHOCDF || 0,
+        fat: nutrients.FAT || 0
+    };
+}
+
+// --- Show nutrient info when user selects a suggestion ---
+foodInput.addEventListener("change", () => {
+    const selectedOption = Array.from(foodSuggestions.options).find(
+        opt => opt.value === foodInput.value
+    );
+    if (selectedOption) {
+        const nutrients = JSON.parse(selectedOption.dataset.nutrients);
+        nutrientDisplay.innerHTML = `
+            <p><strong>Calories:</strong> ${nutrients.calories} kcal</p>
+            <p><strong>Protein:</strong> ${nutrients.protein} g</p>
+            <p><strong>Carbs:</strong> ${nutrients.carbs} g</p>
+            <p><strong>Fat:</strong> ${nutrients.fat} g</p>
+        `;
+    } else {
+        nutrientDisplay.innerHTML = "";
+    }
+});
 mealForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
