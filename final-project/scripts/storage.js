@@ -18,4 +18,3 @@ profileInput.addEventListener('change', function (event) {
   }
 });
 
-localStorage.setItem('nutrientGoals', JSON.stringify(goals));
