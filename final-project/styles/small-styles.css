@@ -64,6 +64,7 @@ header {
     justify-content: space-between;
     padding: 0.5rem 1rem;
 }
+
 .menu-container {
     position: relative;
     display: inline-block;
@@ -97,8 +98,8 @@ header {
 .dropdown-menu {
     display: none;
     position: absolute;
-    top: 45px;
-    right: auto;
+    top: 10%;
+    right: 150;
     background-color: var(--heading-background-color1);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
@@ -123,7 +124,9 @@ header {
     text-decoration: none;
     transition: background-color 0.2s ease;
 }
-
+.mobile-menu.active .dropdown-menu {
+    display: flex;
+}
 .dropdown-menu li a:hover {
     background-color: var(--heading-background-color2);
     color: var(--text);
@@ -242,6 +245,9 @@ header {
     cursor: pointer;
     color: #555;
 }
+.hidden {
+    display: none;
+}
 footer {
     background-color: var(--heading-background-color2);
     /*border-top: 2px solid black;*/
@@ -270,7 +276,7 @@ footer {
     text-align: center;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 780px) {
 
     .summary,
     .meal-log {
@@ -282,5 +288,38 @@ footer {
     .meal-log h2 {
         font-size: 1.2rem;
         white-space: normal;
+    }
+    .menu-btn {
+        display: block;
+    }
+
+    /* Make the menu container visible */
+    .menu-container.sidebar {
+        display: block;
+    }
+
+    /* Hide the full nav list until button clicked */
+    .menu-container ul {
+        display: none;
+    }
+
+    /* When the menu is active, show it */
+    .menu-container.active ul {
+        display: block;
+        background-color: var(--heading-background-color1);
+        position: absolute;
+        top:10px;
+        right: 10px;
+        border-radius: 10px;
+        padding: 0.5rem;
+    }
+
+    .menu-container.active ul li {
+        padding: 0.5rem 0;
+    }
+
+    .menu-container.active ul li a {
+        color: var(--text1);
+        text-decoration: none;
     }
 }

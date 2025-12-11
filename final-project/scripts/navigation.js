@@ -1,14 +1,11 @@
 
-const menuBtn = document.querySelector('.menu-btn');
-const menuContainer = document.querySelector('.menu-container');
+document.addEventListener("DOMContentLoaded", () => {
+  const menuBtn = document.querySelector(".menu-btn");
+  const mobileMenu = document.querySelector(".mobile-menu");
 
-menuBtn.addEventListener('click', () => {
-  menuContainer.classList.toggle('active');
-});
-
-// Close the menu when clicking outside it
-window.addEventListener('click', (event) => {
-  if (!menuContainer.contains(event.target)) {
-    menuContainer.classList.remove('active');
+  if (menuBtn) {
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("active");
+    });
   }
 });

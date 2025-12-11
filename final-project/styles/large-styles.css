@@ -261,5 +261,27 @@
         transition: width 0.4s ease;
     }
 
+    @media (min-width: 768px) {
+        .sidebar {
+            display: block;
+        }
 
+        .mobile-menu {
+            display:contents;
+        }
+    }
+    @media screen and (max-width: 1380px){ 
+
+        .summary,
+        .meal-log {
+            max-width: 95%;
+            padding: 0.75rem;
+        }
+
+        .summary h2,
+        .meal-log h2 {
+            font-size: 1.2rem;
+            white-space: normal;
+        }
+    }
 }

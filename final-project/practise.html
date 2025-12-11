@@ -13,17 +13,14 @@
     <meta property="og:url" content="https://nompilon.github.io/wdd330/final-project/index">
     <meta property="og:image" content="https://nompilon.github.io/wdd231/project/images/hero-medium.webp">
     <link rel="stylesheet" href="styles/small-styles.css">
-    <link rel="stylesheet" href="styles/medium-styles.css">
     <link rel="stylesheet" href="styles/large-styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap" rel="stylesheet">
     <link rel="icon" href="images/nutrition_icon_136342.svg">
     <script src="scripts/navigation.js" defer></script>
+    <script src="scripts/tracker.js" defer></script>
     <script src="scripts/storage.js" defer></script>
-    <script src="scripts/api.js" defer></script>
-    <script src="scripts/settings.js" defer></script>
-    
 </head>
 
 <body>
@@ -61,35 +58,84 @@
                 <input type="file" id="profile-upload" accept="image/*" hidden>
             </div>
         </header>
-        <main class="settings-page">
-            <h2>Set Your Daily Nutrient Goals</h2>
-        
-            <form id="goal-form" class="goal-form">
-                <div class="form-group">
-                    <label for="calorie-goal">Calories (kcal):</label>
-                    <input type="number" id="calorie-goal" placeholder="e.g. 2000" required>
+
+        <!-- Main Content -->
+        <main>
+            <section class="home-main">
+                <section class="summary">
+                    <h2>Daily Nutrients Summary</h2>
+
+                    <div class="nutrient">
+                        <p><strong>Calories:</strong> 1800 / 2000 kcal</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="nutrient">
+                        <p><strong>Protein:</strong> 120 / 150 g</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 80%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="nutrient">
+                        <p><strong>Carbs:</strong> 200 / 250 g</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="nutrient">
+                        <p><strong>Fat:</strong> 60 / 70 g</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <button class="add-meal-btn">Add Meal</button>
+
+                <!-- Meal Modal -->
+                <div id="meal-modal" class="meal-modal hidden">
+                    <div class="meal-modal-content">
+                        <span id="close-meal-modal" class="close-btn">&times;</span>
+                        <h2>Log a Meal</h2>
+                        <form id="meal-form">
+                            <label for="meal-type">Meal Type:</label>
+                            <select id="meal-type" required>
+                                <option value="Breakfast">Breakfast</option>
+                                <option value="Snack">Snack</option>
+                                <option value="Lunch">Lunch</option>
+                                <option value="Dinner">Dinner</option>
+                            </select>
+
+                            <label for="food-name">Food Item:</label>
+                            <input type="text" id="food-name" placeholder="e.g., Oatmeal" required
+                                list="food-suggestions">
+                            <datalist id="food-suggestions"></datalist>
+
+                            <label for="portion">Portion (grams):</label>
+                            <input type="number" id="portion" placeholder="e.g., 100" required>
+
+                            <button type="submit">Add Meal</button>
+                        </form>
+                    </div>
                 </div>
-        
-                <div class="form-group">
-                    <label for="protein-goal">Protein (g):</label>
-                    <input type="number" id="protein-goal" placeholder="e.g. 120" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="carb-goal">Carbohydrates (g):</label>
-                    <input type="number" id="carb-goal" placeholder="e.g. 250" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="fat-goal">Fat (g):</label>
-                    <input type="number" id="fat-goal" placeholder="e.g. 60" required>
-                </div>
-        
-                <button type="submit" class="save-btn">💾 Save Goals</button>
-            </form>
-        
-            <p id="goal-message" class="goal-message"></p>
+
+                <section class="meal-log">
+                    <h2>Meal Log</h2>
+                    <ul>
+                        <li>Breakfast: Oatmeal, 1 cup <a href="#">Edit</a></li>
+                        <li>Snack: Small banana <a href="#">Edit</a></li>
+                        <li>Lunch: Chicken salad <a href="#">Edit</a></li>
+                        <li>Dinner: Salmon & Veggies <a href="#">Edit</a></li>
+                    </ul>
+                </section>
+            </section>
         </main>
+
         <!-- Bottom Nav (for mobile) -->
         <footer class="bottom-nav">
             <nav>
@@ -101,6 +147,7 @@
                 </ul>
             </nav>
         </footer>
+
     </div>
 </body>
 

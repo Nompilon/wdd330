@@ -17,3 +17,5 @@ profileInput.addEventListener('change', function (event) {
     reader.readAsDataURL(file);
   }
 });
+
+localStorage.setItem('nutrientGoals', JSON.stringify(goals));
