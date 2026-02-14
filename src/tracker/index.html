@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriTrack Hub | Home</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/nutrition_icon_136342.svg">
+  </head>
+
+  <body>
+    <div id="main-container">
+
+      <!-- Sidebar -->
+      <nav class="menu-container sidebar">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="../tracker/index.html">Track Meals</a></li>
+          <li><a href="../recipes/index.html">Recipes</a></li>
+          <li><a href="../about/index.html">About</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header -->
+      <header class="top-card">
+        <!-- ✅ Mobile/Small menu (hidden on large view) -->
+        <nav class="menu-container mobile-menu"> <button class="menu-btn">☰</button>
+          <ul class="dropdown-menu">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="../tracker/index.html">Track Meals</a></li>
+            <li><a href="../recipes/index.html">Recipes</a></li>
+            <li><a href="../about/index.html">About</a></li>
+          </ul>
+        </nav>
+        <h1>NutriTrack Hub <img src="images/nutrition_icon_136342.svg" alt=""></h1>
+        <div class="profile-container">
+          <label for="profile-upload" class="profile-label">
+            <img src="images/default-profile-picture.svg" alt="User profile" id="profile-img" class="profile-img">
+          </label>
+          <input type="file" id="profile-upload" accept="image/*" hidden>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main>
+        <section class="home-main">
+          <section class="summary">
+            <h2>Daily Nutrients Summary</h2>
+
+            <div class="nutrient">
+              <p><strong>Calories:</strong> 1800 / 2000 kcal</p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 90%"></div>
+              </div>
+            </div>
+
+            <div class="nutrient">
+              <p><strong>Protein:</strong> 120 / 150 g</p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 80%"></div>
+              </div>
+            </div>
+
+            <div class="nutrient">
+              <p><strong>Carbs:</strong> 200 / 250 g</p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 75%"></div>
+              </div>
+            </div>
+
+            <div class="nutrient">
+              <p><strong>Fat:</strong> 60 / 70 g</p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 85%"></div>
+              </div>
+            </div>
+          </section>
+
+          <button class="add-meal-btn">Add Meal</button>
+
+          <!-- Meal Modal -->
+          <div id="meal-modal" class="meal-modal hidden">
+            <div class="meal-modal-content">
+              <span id="close-meal-modal" class="close-btn">&times;</span>
+              <h2>Log a Meal</h2>
+              <form id="meal-form">
+                <label for="meal-type">Meal Type:</label>
+                <select id="meal-type" required>
+                  <option value="Breakfast">Breakfast</option>
+                  <option value="Snack">Snack</option>
+                  <option value="Lunch">Lunch</option>
+                  <option value="Dinner">Dinner</option>
+                </select>
+
+                <label for="food-name">Food Item:</label>
+                <input
+                  type="text"
+                  id="food-name"
+                  placeholder="e.g., Oatmeal"
+                  required
+                  list="food-suggestions"
+                />
+                <datalist id="food-suggestions"></datalist>
+
+                <label for="portion">Portion (grams):</label>
+                <input
+                  type="number"
+                  id="portion"
+                  placeholder="e.g., 100"
+                  required
+                />
+
+                <button type="submit">Add Meal</button>
+              </form>
+            </div>
+          </div>
+
+          <section class="meal-log">
+            <h2>Meal Log</h2>
+            <ul>
+              <li>Breakfast: Oatmeal, 1 cup <a href="#">Edit</a></li>
+              <li>Snack: Small banana <a href="#">Edit</a></li>
+              <li>Lunch: Chicken salad <a href="#">Edit</a></li>
+              <li>Dinner: Salmon & Veggies <a href="#">Edit</a></li>
+            </ul>
+          </section>
+        </section>
+        <section class="nutrient-goals">
+          <h2>Set Your Daily Nutrient Goals</h2>
+
+          <form id="goal-form" class="goal-form">
+            <div class="form-group">
+              <label for="calorie-goal">Calories (kcal):</label>
+              <input
+                type="number"
+                id="calorie-goal"
+                placeholder="e.g. 2000"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="protein-goal">Protein (g):</label>
+              <input
+                type="number"
+                id="protein-goal"
+                placeholder="e.g. 120"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="carb-goal">Carbohydrates (g):</label>
+              <input
+                type="number"
+                id="carb-goal"
+                placeholder="e.g. 250"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="fat-goal">Fat (g):</label>
+              <input
+                type="number"
+                id="fat-goal"
+                placeholder="e.g. 60"
+                required
+              />
+            </div>
+
+            <button type="submit" class="save-btn">💾 Save Goals</button>
+          </form>
+
+          <div id="goals-summary">
+            <h3>Your Current Goals:</h3>
+            <p id="goals-display">No goals set yet.</p>
+          </div>
+        </section>
+      </main>
+
+      <!-- Bottom Nav (for mobile) -->
+          <!-- Footer -->
+          <footer class="bottom-nav">
+            <nav>
+              <ul class="footer-nav">
+                <li><a href="index.html"><img src="../images/house-chimney-solid.svg" alt="Home"></a></li>
+                <li><a href="../tracker.html"><img src="../images/arrow-trend-up-solid.svg" alt="Trends"></a></li>
+                <li><a href="../recipes/index.html"><img src="../images/bullseye-solid.svg" alt="Tracker"></a></li>
+                <li><a href="../about/index.html"><img src="../images/gears-solid.svg" alt="Settings"></a></li>
+              </ul>
+            </nav>
+          </footer>
+
+    </div>
+    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/api.js"></script>
+    <script type="module" src="../js/navigation.js"></script>
+    <script type="module" src="../js/storage.js"></script>
+  </body>
+</html>

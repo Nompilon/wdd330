@@ -1,0 +1,339 @@
+/* ================================
+   ROOT VARIABLES
+================================ */
+:root {
+  /* Primary Brand Colors */
+  --primary: #0077cc;
+  --primary-dark: #005fa3;
+  --primary-light: #e6f2fb;
+
+  /* Backgrounds */
+  --background-main: #f4f6f8;
+  --background-card: #ffffff;
+  --background-overlay: rgba(0, 0, 0, 0.5);
+
+  /* Text */
+  --text: #1f2933;
+  --text-muted: #6b7280;
+  --text1: #ffffff;
+
+  /* Dropdown */
+  --heading-background-color1: #1f2933;
+  --heading-background-color2: #0077cc;
+
+  /* Borders & UI */
+  --border-light: #e5e7eb;
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* Transition */
+  --transition: all 0.3s ease;
+}
+
+/* ================================
+   RESET + BASE
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #f4f6f8;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ================================
+   LAYOUT
+================================ */
+#main-container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding: 2rem;
+}
+
+/* ================================
+   SIDEBAR
+================================ */
+.sidebar {
+  background: white;
+  width: 220px;
+  padding: 2rem 1rem;
+  display: none;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  margin-bottom: 1.5rem;
+}
+
+.sidebar a.active {
+  color: #0077cc;
+  font-weight: bold;
+}
+
+/* ================================
+  Smallview dropdown menu
+================================ */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  background-color: var(--heading-background-color1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  list-style: none;
+  padding: 8px 0;
+  min-width: 150px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.dropdown-menu li {
+  text-align: left;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 16px;
+  color: var(--text1);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.mobile-menu.active .dropdown-menu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu li a:hover {
+  background-color: var(--heading-background-color2);
+  color: var(--text);
+}
+/* ================================
+   HEADER
+================================ */
+.top-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* ================================
+   CARDS
+================================ */
+.summary,
+.quick-links,
+.recent-meals-section {
+  background: white;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.links{
+  display: flex;
+  margin-top: 1.5rem;
+ justify-content: space-around;
+}
+/* ================================
+   NUTRIENTS
+================================ */
+.nutrient {
+  margin-top: 1rem;
+}
+
+.progress-bar {
+  height: 10px;
+  background: #eee;
+  border-radius: 5px;
+  margin-top: 0.3rem;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #0077cc;
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+/* ================================
+   BUTTONS
+================================ */
+.add-meal-btn,
+button {
+  background: #0077cc;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 3rem;
+}
+
+.add-meal-btn:hover,
+button:hover {
+  background: #005fa3;
+}
+
+/* ================================
+   MEAL LIST
+================================ */
+#recent-meals {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+#recent-meals li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* ================================
+   MODAL
+================================ */
+#meal-modal.hidden {
+  display: none;
+}
+
+#meal-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#meal-modal form {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 320px;
+}
+
+#meal-modal label {
+  display: block;
+  margin-top: 1rem;
+}
+
+#meal-modal input,
+#meal-modal select {
+  width: 100%;
+  padding: 0.4rem;
+  margin-top: 0.3rem;
+}
+
+/* ================================
+   FOOTER
+================================ */
+.bottom-nav {
+  background: clear;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
+}
+
+.footer-nav {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem 0;
+
+}
+
+.footer-nav img {
+  width: 26px;
+}
+
+/* ===========================
+   ANIMATIONS
+=========================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ================================
+   DESKTOP
+================================ */
+@media (min-width: 768px) {
+
+  #main-container {
+    flex-direction: row;
+  }
+.menu-container.mobile-menu,
+.bottom-nav {
+  display: none;
+}
+  .sidebar {
+    display: block;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+  }
+
+  main {
+    flex: 1;
+  }
+}

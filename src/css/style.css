@@ -1,0 +1,254 @@
+/* =====================================
+   General Styles
+===================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* =====================================
+   Layout
+===================================== */
+#main-container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: #ffffff;
+  padding: 2rem 1rem;
+  width: 220px;
+  display: none;
+  /* hidden on small screens */
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  margin-bottom: 1.5rem;
+}
+
+.sidebar a {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #333;
+}
+
+.sidebar a.active {
+  color: #0077cc;
+}
+
+/* Header */
+header.top-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 400;
+}
+
+.profile-container {
+  position: relative;
+}
+
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.menu-btn {
+  font-size: 1.5rem;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 2.5rem;
+  left: 0;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  list-style: none;
+  padding: 0.5rem 0;
+}
+
+.dropdown-menu li {
+  padding: 0.5rem 1rem;
+}
+
+.dropdown-menu li a.active {
+  color: #0077cc;
+}
+
+/* =====================================
+   Main Content
+===================================== */
+main {
+  flex: 1;
+  padding: 2rem;
+}
+
+.welcome h2 {
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.summary,
+.quick-links,
+.recent-meals-section {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.nutrient {
+  margin-top: 1rem;
+}
+
+.progress-bar {
+  background-color: #eee;
+  height: 10px;
+  border-radius: 5px;
+  margin-top: 0.25rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #0077cc;
+  width: 0%;
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+/* Quick links buttons */
+.add-meal-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin: 0.25rem;
+  background-color: #0077cc;
+  color: white;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.add-meal-btn:hover {
+  background-color: #005fa3;
+}
+
+/* Recent meals list */
+#recent-meals {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+#recent-meals li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* Footer */
+/*.bottom-nav {
+  background-color: #ffffff;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+}
+
+.footer-nav li img {
+  width: 24px;
+  height: 24px;
+}
+*/
+
+/* =====================================
+   Footer
+===================================== */
+footer {
+  grid-area: footer;
+  background-color: var(--accent);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+}
+
+.footer-nav img {
+  width: 28px;
+}
+/* =====================================
+   Responsive
+===================================== */
+@media screen and (min-width: 768px) {
+  #main-container {
+    flex-direction: row;
+  }
+
+  .sidebar {
+    display: block;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+
+  main {
+    flex: 1;
+    padding: 2rem;
+  }
+}

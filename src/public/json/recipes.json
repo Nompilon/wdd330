@@ -1,0 +1,112 @@
+{
+    "recipes": [
+        {
+            "recipeName": "Beef stew with root vegetables",
+            "healthBenefits": "High in protein and iron, supports muscle health and energy levels",
+            "origin": "Traditional South African farmhouse recipe",
+            "recipeUrl": "https://example.com/beef-stew-root-vegetables",
+            "imageUrl": "../images/beef-stew-with-root-vegetables.webp",
+            "membershipLevel": 3,
+            "description": "A hearty winter classic made with tender beef, carrots, potatoes, and parsnips slow-cooked in a rich, savory broth."
+        },
+        {
+            "recipeName": "Roast chicken with rosemary and lemon",
+            "healthBenefits": "Rich in lean protein, rosemary contains antioxidants and lemon aids digestion",
+            "origin": "Mediterranean-inspired dish",
+            "recipeUrl": "https://example.com/roast-chicken-rosemary-lemon",
+            "imageUrl": "../images/roast-chicken-with-rosemary-and-lemon.webp",
+            "membershipLevel": 2,
+            "description": "Juicy roast chicken infused with fresh rosemary and tangy lemon, perfect for a cozy winter dinner."
+        },
+        {
+            "recipeName": "Creamy chicken and mushroom soup",
+            "healthBenefits": "Provides protein, mushrooms are a source of B vitamins and antioxidants",
+            "origin": "European comfort food",
+            "recipeUrl": "https://example.com/creamy-chicken-mushroom-soup",
+            "imageUrl": "../images/creamy-chicken-and-mushroom-soup.webp",
+            "membershipLevel": 3,
+            "description": "A comforting creamy soup made with tender chicken pieces, earthy mushrooms, and a hint of fresh herbs."
+        },
+        {
+            "recipeName": "Chicken and mushroom pie",
+            "healthBenefits": "Balanced carbs, protein, and fats; mushrooms support immune health",
+            "origin": "British pub-style classic",
+            "recipeUrl": "../images/cooking4recipe.pdf",
+            "imageUrl": "../images/chicken-and-mushroom-pie.webp",
+            "membershipLevel": 1,
+            "description": "Golden flaky pastry filled with creamy chicken and mushroom filling, ideal for cold winter days."
+        },
+        {
+            "recipeName": "Lentil and vegetable stew",
+            "healthBenefits": "High in plant-based protein and fiber, supports digestive health",
+            "origin": "Mediterranean vegan recipe",
+            "recipeUrl": "https://example.com/lentil-vegetable-stew",
+            "imageUrl": "../images/lentil-and-vegetable-stew.webp",
+            "membershipLevel": 2,
+            "description": "A healthy, protein-rich stew packed with lentils, carrots, celery, and tomatoes for a warming vegan-friendly meal."
+        },
+        {
+            "recipeName": "Creamed spinach",
+            "healthBenefits": "Rich in iron, calcium, and vitamins A & C",
+            "origin": "European side dish",
+            "recipeUrl": "https://example.com/creamed-spinach",
+            "imageUrl": "../images/creamed-spinach.webp",
+            "membershipLevel": 2,
+            "description": "Rich and creamy spinach with a touch of garlic and nutmeg, a perfect side dish for hearty winter mains."
+        },
+        {
+            "recipeName": "Apple crumble with cinnamon",
+            "healthBenefits": "Apples provide fiber and vitamin C, cinnamon may help regulate blood sugar",
+            "origin": "British dessert",
+            "recipeUrl": "https://example.com/apple-crumble-cinnamon",
+            "imageUrl": "../images/apple-crumble-with-cinnamon.webp",
+            "membershipLevel": 1,
+            "description": "Warm baked apples topped with a golden cinnamon crumble, served best with a dollop of yogurt or cream."
+        },
+        {
+            "recipeName": "Grilled pineapple with lime zest",
+            "healthBenefits": "Pineapple is rich in vitamin C and bromelain, lime supports immune function",
+            "origin": "Tropical-inspired dessert",
+            "recipeUrl": "https://example.com/grilled-pineapple-lime-zest",
+            "imageUrl": "../images/grilled-pineapple-with-lime-zest.webp",
+            "membershipLevel": 1,
+            "description": "Sweet grilled pineapple slices brightened with fresh lime zest, a light and refreshing healthy dessert."
+        },
+        {
+            "recipeName": "Banana nice cream (blended frozen bananas)",
+            "healthBenefits": "Dairy-free and naturally sweet, bananas are a good source of potassium",
+            "origin": "Vegan frozen treat",
+            "recipeUrl": "https://example.com/banana-nice-cream",
+            "imageUrl": "../images/Banana-nice-cream-blended frozen-bananas.webp",
+            "membershipLevel": 1,
+            "description": "A creamy, dairy-free treat made by blending frozen bananas into a naturally sweet ice cream alternative."
+        },
+        {
+            "recipeName": "Baked oatmeal with apples and walnuts",
+            "healthBenefits": "Oats help lower cholesterol, walnuts provide healthy fats, apples are rich in fiber",
+            "origin": "Healthy breakfast dessert hybrid",
+            "recipeUrl": "https://example.com/baked-oatmeal-apples-walnuts",
+            "imageUrl": "../images/baked-oatmeal-with-apples-and-walnuts.webp",
+            "membershipLevel": 1,
+            "description": "Wholesome baked oatmeal loaded with fresh apples, crunchy walnuts, and a hint of cinnamon for a cozy breakfast or dessert."
+        },
+        {
+            "recipeName": "Stuffed Dates",
+            "healthBenefits": "Dates are high in fiber,contains natural sugars,rich in nutrients such as potassium, magnesium, iron, vitamins andfights inflammation",
+            "origin": "Healthy breakfast dessert hybrid",
+            "recipeUrl": "https://example.com/baked-oatmeal-apples-walnuts",
+            "imageUrl": "../images/Stuffed-dates.webp",
+            "membershipLevel": 1,
+            "description": "Dates stuffed with almond butter or soft cheese, optionally sprinkled with cinnamon or cocoa."
+        },
+        {
+            "recipeName": "Cinnamon & Milk Drink",
+            "healthBenefits": "Supports bone health, rich in protein and calcium, help fight inflammation, aid digestion and regulate blood sugar",
+            "origin": "Cozy winter beverage",
+            "recipeUrl": "https://example.com/cinnamon-milk-drink",
+            "imageUrl": "../images/cinnamon-milk-drink.webp",
+            "membershipLevel": 1,
+            "description": "Warm milk infused with a pinch of cinnamon. A soothing, healthy drink perfect for relaxation and immunity support."
+        }
+    ]
+}
