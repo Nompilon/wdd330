@@ -70,6 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function initGoalsForm() {
+    if (!goalCalories || !goalProtein || !goalCarbs || !goalFat) return;
+
     const goals = getNutrientGoals();
     goalCalories.value = goals.calories;
     goalProtein.value = goals.protein;
