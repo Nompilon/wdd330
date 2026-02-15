@@ -12,9 +12,7 @@
     "test": "jest",
     "preview": "vite preview"
   },
-  "engines": {
-    "node": ">=18.0.0"
-  },
+  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Nompilon/wdd330.git"
