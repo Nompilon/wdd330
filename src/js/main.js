@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         totals.fat += Number(m.fat);
 
         const li = document.createElement("li");
+        li.dataset.index = index;
         li.textContent = `${m.mealType}: ${m.foodName} (${m.portion}g) — ${m.calories} kcal`;
 
         mealLog.appendChild(li);

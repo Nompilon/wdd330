@@ -17,7 +17,6 @@
   --text-muted: #6b7280;
   --text-light: #ffffff;
 
-
   /* Dropdown */
   --dropdown-bg: #1f2933;
   --dropdown-hover: #dbc066;
@@ -320,13 +319,12 @@ button:hover {
     opacity: 1;
   }
 }
-.meal-actions{
+.meal-actions {
   display: flex;
   justify-content: space-evenly;
   background-color: var(--dropdown-hover);
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   color: var();
-
 }
 .edit-meal:hover,
 .delete-meal:hover {
