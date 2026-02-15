@@ -11,33 +11,33 @@ const closeRecipeModal = document.getElementById("close-recipe-modal");
 // Helper: convert membershipLevel number to name
 function getMembershipName(level) {
     switch (level) {
-        case 1: return 'Free';
-      case 2: return 'Basic';
-      case 3: return 'Premium';
-        default: return 'Unknown';
+        case 1: return "Free";
+      case 2: return "Basic";
+      case 3: return "Premium";
+        default: return "Unknown";
     }
 }
 
 // Create a recipe card
 // Create a recipe card
 function createRecipeCard(recipe, includeOverlay = true) {
-    const card = document.createElement('section');
-    card.classList.add('recipes-cards');
+    const card = document.createElement("section");
+    card.classList.add("recipes-cards");
 
     // Image overlay
     if (includeOverlay) {
-        const overlay = document.createElement('div');
-        overlay.classList.add('image-container');
+        const overlay = document.createElement("div");
+        overlay.classList.add("image-container");
 
-        const img = document.createElement('img');
+        const img = document.createElement("img");
         img.src = recipe.imageUrl;
         img.alt = recipe.recipeName;
-        img.loading = 'lazy';
+        img.loading = "lazy";
         img.width = 300;
-        img.onerror = () => { img.src = 'images/placeholder.webp'; };
+        img.onerror = () => { img.src = "images/placeholder.webp"; };
 
-        const titleOverlay = document.createElement('div');
-        titleOverlay.classList.add('overlay-title');
+        const titleOverlay = document.createElement("div");
+        titleOverlay.classList.add("overlay-title");
         titleOverlay.textContent = recipe.recipeName;
 
         overlay.appendChild(img);
@@ -46,8 +46,8 @@ function createRecipeCard(recipe, includeOverlay = true) {
     }
 
     // Info row
-    const infoRow = document.createElement('div');
-    infoRow.classList.add('info-row');
+    const infoRow = document.createElement("div");
+    infoRow.classList.add("info-row");
     infoRow.innerHTML = `
         <div class="info-origin"><strong>Origin:</strong> ${recipe.origin}</div>
         <div class="info-healthBenefit"><strong>Health Benefits:</strong> ${recipe.healthBenefits}</div>
@@ -56,18 +56,18 @@ function createRecipeCard(recipe, includeOverlay = true) {
     card.appendChild(infoRow);
 
     // Description
-    const description = document.createElement('p');
-    description.classList.add('recipe-description');
+    const description = document.createElement("p");
+    description.classList.add("recipe-description");
     description.textContent = recipe.description;
     card.appendChild(description);
 
     // View Recipe button
-    const btn = document.createElement('button');
-    btn.classList.add('recipe-btn');
-    btn.textContent = 'View Recipe';
-    btn.addEventListener('click', () => {
+    const btn = document.createElement("button");
+    btn.classList.add("recipe-btn");
+    btn.textContent = "View Recipe";
+    btn.addEventListener("click", () => {
         recipeIframe.src = recipe.recipeUrl; // load recipe
-        recipeModal.classList.remove('hidden'); // show modal
+        recipeModal.classList.remove("hidden"); // show modal
     });
     card.appendChild(btn);
 

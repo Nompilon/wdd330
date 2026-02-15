@@ -77,7 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
     goalFat.value = goals.fat;
   }
 
-  const goalsForm = document.getElementById("goals-form");
   if (goalsForm) {
       goalsForm.addEventListener("submit", (e) => {
     e.preventDefault();
