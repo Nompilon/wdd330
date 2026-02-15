@@ -18,7 +18,7 @@
   "keywords": [],
   "author": "Nompilo Ngwenya",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/Nompilon/wdd330/issues"
   },
