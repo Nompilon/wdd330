@@ -166,10 +166,10 @@ main {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.links{
+.links {
   display: flex;
   margin-top: 1.5rem;
- justify-content: space-around;
+  justify-content: space-around;
 }
 /* ================================
    NUTRIENTS
@@ -272,7 +272,6 @@ button:hover {
   position: fixed;
   bottom: 0;
   width: 100%;
-
 }
 
 .footer-nav {
@@ -280,7 +279,6 @@ button:hover {
   display: flex;
   justify-content: space-around;
   padding: 1rem 0;
-
 }
 
 .footer-nav img {
@@ -318,14 +316,13 @@ button:hover {
    DESKTOP
 ================================ */
 @media (min-width: 768px) {
-
   #main-container {
     flex-direction: row;
   }
-.menu-container.mobile-menu,
-.bottom-nav {
-  display: none;
-}
+  .menu-container.mobile-menu,
+  .bottom-nav {
+    display: none;
+  }
   .sidebar {
     display: block;
     height: 100vh;

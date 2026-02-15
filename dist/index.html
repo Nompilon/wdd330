@@ -1,148 +1,169 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NutriTrack Hub | Home</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="images/nutrition_icon_136342.svg" />
+    <script type="module" crossorigin src="/assets/storage-lqsrDbtz.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/storage-bHJ0jRr0.css">
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NutriTrack Hub | Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap" rel="stylesheet">
-  <link rel="icon" href="images/nutrition_icon_136342.svg">
-  <script type="module" crossorigin src="/assets/storage-lqsrDbtz.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/storage-bHJ0jRr0.css">
-</head>
-
-<body>
-  <div id="main-container">
-
-    <!-- Sidebar -->
-    <nav class="menu-container sidebar">
-      <ul>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="../tracker/index.html">Track Meals</a></li>
-        <li><a href="../recipes/index.html">Recipes</a></li>
-        <li><a href="../about/index.html">About</a></li>
-      </ul>
-    </nav>
-
-    <!-- Header -->
-    <header class="top-card">
-      <!-- ✅ Mobile/Small menu (hidden on large view) -->
-      <nav class="menu-container mobile-menu"> <button class="menu-btn">☰</button>
-        <ul class="dropdown-menu">
+  <body>
+    <div id="main-container">
+      <!-- Sidebar -->
+      <nav class="menu-container sidebar">
+        <ul>
           <li><a href="index.html" class="active">Home</a></li>
           <li><a href="../tracker/index.html">Track Meals</a></li>
           <li><a href="../recipes/index.html">Recipes</a></li>
           <li><a href="../about/index.html">About</a></li>
         </ul>
       </nav>
-      <h1>NutriTrack Hub <img src="images/nutrition_icon_136342.svg" alt=""></h1>
-      <div class="profile-container">
-        <label for="profile-upload" class="profile-label">
-          <img src="images/default-profile-picture.svg" alt="User profile" id="profile-img" class="profile-img">
-        </label>
-        <input type="file" id="profile-upload" accept="image/*" hidden>
+
+      <!-- Header -->
+      <header class="top-card">
+        <!-- ✅ Mobile/Small menu (hidden on large view) -->
+        <nav class="menu-container mobile-menu">
+          <button class="menu-btn">☰</button>
+          <ul class="dropdown-menu">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="../tracker/index.html">Track Meals</a></li>
+            <li><a href="../recipes/index.html">Recipes</a></li>
+            <li><a href="../about/index.html">About</a></li>
+          </ul>
+        </nav>
+        <h1>
+          NutriTrack Hub <img src="images/nutrition_icon_136342.svg" alt="" />
+        </h1>
+        <div class="profile-container">
+          <label for="profile-upload" class="profile-label">
+            <img
+              src="images/default-profile-picture.svg"
+              alt="User profile"
+              id="profile-img"
+              class="profile-img"
+            />
+          </label>
+          <input type="file" id="profile-upload" accept="image/*" hidden />
+        </div>
+      </header>
+
+      <!-- Main Dashboard -->
+      <main>
+        <section class="home-main">
+          <!-- Welcome Message -->
+          <div class="welcome">
+            <h2>Welcome back!</h2>
+            <p>Here's a quick look at your progress today.</p>
+          </div>
+
+          <!-- Daily Nutrient Summary -->
+          <section class="summary">
+            <h2>Daily Nutrients Summary</h2>
+            <div class="nutrient">
+              <p><strong>Calories:</strong> 0 / 2000 kcal</p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%"></div>
+              </div>
+            </div>
+            <div class="nutrient">
+              <p><strong>Protein:</strong> 0 / 150 g</p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%"></div>
+              </div>
+            </div>
+            <div class="nutrient">
+              <p><strong>Carbs:</strong> 0 / 250 g</p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%"></div>
+              </div>
+            </div>
+            <div class="nutrient">
+              <p><strong>Fat:</strong> 0 / 70 g</p>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%"></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Quick Links -->
+          <section class="quick-links">
+            <h2>Quick Actions</h2>
+            <div class="links">
+              <a href="tracker.html" class="add-meal-btn">Track Meals</a>
+              <a href="progress.html" class="add-meal-btn">View Progress</a>
+              <a href="settings.html" class="add-meal-btn">Settings</a>
+            </div>
+          </section>
+
+          <!-- Recent Meals -->
+          <section class="recent-meals-section">
+            <h2>Recent Meals</h2>
+            <ul class="meal-log" id="recent-meals"></ul>
+          </section>
+
+          <button id="open-meal-modal" class="add-meal-btn">Add Meal</button>
+        </section>
+      </main>
+
+      <!-- Meal Modal -->
+      <div id="meal-modal" class="hidden">
+        <form id="meal-form">
+          <h2>Add Meal</h2>
+
+          <label for="meal-type">Meal Type:</label>
+          <select id="meal-type">
+            <option>Breakfast</option>
+            <option>Lunch</option>
+            <option>Dinner</option>
+            <option>Snack</option>
+          </select>
+
+          <label for="food-name">Food Name:</label>
+          <input id="food-name" type="text" required />
+
+          <label for="portion">Portion (g):</label>
+          <input id="portion" type="number" required />
+
+          <div style="margin-top: 1rem">
+            <button type="submit">Add Meal</button>
+            <button type="button" id="close-meal-modal">Cancel</button>
+          </div>
+        </form>
       </div>
-    </header>
 
-    <!-- Main Dashboard -->
-    <main>
-      <section class="home-main">
-
-        <!-- Welcome Message -->
-        <div class="welcome">
-          <h2>Welcome back!</h2>
-          <p>Here's a quick look at your progress today.</p>
-        </div>
-
-        <!-- Daily Nutrient Summary -->
-        <section class="summary">
-          <h2>Daily Nutrients Summary</h2>
-          <div class="nutrient">
-            <p><strong>Calories:</strong> 0 / 2000 kcal</p>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width:0%;"></div>
-            </div>
-          </div>
-          <div class="nutrient">
-            <p><strong>Protein:</strong> 0 / 150 g</p>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width:0%;"></div>
-            </div>
-          </div>
-          <div class="nutrient">
-            <p><strong>Carbs:</strong> 0 / 250 g</p>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width:0%;"></div>
-            </div>
-          </div>
-          <div class="nutrient">
-            <p><strong>Fat:</strong> 0 / 70 g</p>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width:0%;"></div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Quick Links -->
-        <section class="quick-links">
-          <h2>Quick Actions</h2>
-          <div class="links">
-            <a href="tracker.html" class="add-meal-btn">Track Meals</a>
-            <a href="progress.html" class="add-meal-btn">View Progress</a>
-            <a href="settings.html" class="add-meal-btn">Settings</a>
-          </div>
-        </section>
-
-        <!-- Recent Meals -->
-        <section class="recent-meals-section">
-          <h2>Recent Meals</h2>
-          <ul class="meal-log" id="recent-meals"></ul>
-        </section>
-
-        <button id="open-meal-modal" class="add-meal-btn">Add Meal</button>
-
-      </section>
-    </main>
-
-    <!-- Meal Modal -->
-    <div id="meal-modal" class="hidden">
-      <form id="meal-form">
-        <h2>Add Meal</h2>
-
-        <label for="meal-type">Meal Type:</label>
-        <select id="meal-type">
-          <option>Breakfast</option>
-          <option>Lunch</option>
-          <option>Dinner</option>
-          <option>Snack</option>
-        </select>
-
-        <label for="food-name">Food Name:</label>
-        <input id="food-name" type="text" required>
-
-        <label for="portion">Portion (g):</label>
-        <input id="portion" type="number" required>
-
-        <div style="margin-top:1rem;">
-          <button type="submit">Add Meal</button>
-          <button type="button" id="close-meal-modal">Cancel</button>
-        </div>
-      </form>
+      <!-- Footer -->
+      <footer class="bottom-nav">
+        <nav>
+          <ul class="footer-nav">
+            <li>
+              <a href="index.html"
+                ><img src="images/house-chimney-solid.svg" alt="Home"
+              /></a>
+            </li>
+            <li>
+              <a href="../tracker.html"
+                ><img src="images/arrow-trend-up-solid.svg" alt="Trends"
+              /></a>
+            </li>
+            <li>
+              <a href="../recipes/index.html"
+                ><img src="images/bullseye-solid.svg" alt="Tracker"
+              /></a>
+            </li>
+            <li>
+              <a href="../about/index.html"
+                ><img src="images/gears-solid.svg" alt="About"
+              /></a>
+            </li>
+          </ul>
+        </nav>
+      </footer>
     </div>
-
-    <!-- Footer -->
-    <footer class="bottom-nav">
-      <nav>
-        <ul class="footer-nav">
-          <li><a href="index.html"><img src="images/house-chimney-solid.svg" alt="Home"></a></li>
-          <li><a href="../tracker.html"><img src="images/arrow-trend-up-solid.svg" alt="Trends"></a></li>
-          <li><a href="../recipes/index.html"><img src="images/bullseye-solid.svg" alt="Tracker"></a></li>
-          <li><a href="../about/index.html"><img src="images/gears-solid.svg" alt="About"></a></li>
-        </ul>
-      </nav>
-    </footer>
-
-  </div>
-</body>
-
+  </body>
 </html>

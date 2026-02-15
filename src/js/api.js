@@ -78,20 +78,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (goalsForm) {
-      goalsForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const goals = {
-      calories: parseInt(goalCalories.value) || 2000,
-      protein: parseInt(goalProtein.value) || 150,
-      carbs: parseInt(goalCarbs.value) || 250,
-      fat: parseInt(goalFat.value) || 70,
-    };
-    setNutrientGoals(goals);
-    alert("Nutrient goals updated!");
-  });
-
-}
-
+    goalsForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const goals = {
+        calories: parseInt(goalCalories.value) || 2000,
+        protein: parseInt(goalProtein.value) || 150,
+        carbs: parseInt(goalCarbs.value) || 250,
+        fat: parseInt(goalFat.value) || 70,
+      };
+      setNutrientGoals(goals);
+      alert("Nutrient goals updated!");
+    });
+  }
 
   function promptNutrientGoals() {
     const goals = {

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let editingIndex = null;
 
   addMealBtn.addEventListener("click", () =>
-    mealModal.classList.remove("hidden")
+    mealModal.classList.remove("hidden"),
   );
 
   closeModal.addEventListener("click", () => {
@@ -62,18 +62,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const totals = { calories: 0, protein: 0, carbs: 0, fat: 0 };
 
-    meals.slice(-5).reverse().forEach((m, index) => {
-      totals.calories += Number(m.calories);
-      totals.protein += Number(m.protein);
-      totals.carbs += Number(m.carbs);
-      totals.fat += Number(m.fat);
+    meals
+      .slice(-5)
+      .reverse()
+      .forEach((m, index) => {
+        totals.calories += Number(m.calories);
+        totals.protein += Number(m.protein);
+        totals.carbs += Number(m.carbs);
+        totals.fat += Number(m.fat);
 
-      const li = document.createElement("li");
-      li.textContent =
-        `${m.mealType}: ${m.foodName} (${m.portion}g) — ${m.calories} kcal`;
+        const li = document.createElement("li");
+        li.textContent = `${m.mealType}: ${m.foodName} (${m.portion}g) — ${m.calories} kcal`;
 
-      mealLog.appendChild(li);
-    });
+        mealLog.appendChild(li);
+      });
 
     const nutrientData = [
       { key: "calories", max: 2000, unit: "kcal" },

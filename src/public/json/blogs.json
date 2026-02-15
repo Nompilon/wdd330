@@ -1,100 +1,100 @@
 {
-    "blogs": [
-        {
-            "blogTitle": "5 Superfoods to Boost Your Immune System",
-            "imageUrl": "images/superfoods.webp",
-            "description": "Discover five nutrient-packed foods that can strengthen your immunity naturally, including kale, garlic, berries, and more.",
-            "publishDate": "2025-08-01",
-            "author": "Dr. Nandi Molefe",
-            "profession": "Nutritionist"
-        },
-        {
-            "blogTitle": "The Secret to Perfectly Roasted Vegetables",
-            "imageUrl": "images/roasted-vegetables.webp",
-            "description": "Learn the techniques and seasoning tips that will make your roasted vegetables taste restaurant-quality every time.",
-            "publishDate": "2025-08-05",
-            "author": "Chef Sipho Khumalo",
-            "profession": "Professional Chef"
-        },
-        {
-            "blogTitle": "Hydration Hacks: Best Drinks for Summer",
-            "imageUrl": "images/hydration.webp",
-            "description": "Stay refreshed and healthy this summer with these hydration tips and healthy drink ideas that go beyond plain water.",
-            "publishDate": "2025-08-08",
-            "author": "Lerato Dlamini",
-            "profession": "Wellness Coach"
-        },
-        {
-            "blogTitle": "The Truth About Protein in Plant-Based Diets",
-            "imageUrl": "images/plant-protein.webp",
-            "description": "Are you getting enough protein on a plant-based diet? Explore the best plant-based protein sources and how to combine them.",
-            "publishDate": "2025-08-10",
-            "author": "Dr. Sipho Ntuli",
-            "profession": "Dietitian"
-        },
-        {
-            "blogTitle": "Quick Healthy Breakfast Ideas",
-            "imageUrl": "images/healthy-breakfast.webp",
-            "description": "Start your day right with these quick, nutritious breakfast recipes that are perfect for busy mornings.",
-            "publishDate": "2025-08-12",
-            "author": "Thandi Mokoena",
-            "profession": "Food Blogger"
-        },
-        {
-            "blogTitle": "Mindful Eating: Tips to Avoid Overeating",
-            "imageUrl": "images/mindful-eating.webp",
-            "description": "Learn how to practice mindful eating and enjoy your meals without overindulging, improving digestion and wellbeing.",
-            "publishDate": "2025-08-13",
-            "author": "Dr. Amanda Khumalo",
-            "profession": "Health Coach"
-        },
-        {
-            "blogTitle": "Plant-Based Snacks for Energy",
-            "imageUrl": "images/plant-snacks.webp",
-            "description": "Simple, nutrient-dense snacks to keep your energy up throughout the day.",
-            "publishDate": "2025-08-14",
-            "author": "Nomsa Dube",
-            "profession": "Nutritionist"
-        },
-        {
-            "blogTitle": "Spices That Boost Metabolism",
-            "imageUrl": "images/spices.webp",
-            "description": "Discover spices that can naturally enhance your metabolism and flavor your meals.",
-            "publishDate": "2025-08-15",
-            "author": "Chef Themba Maseko",
-            "profession": "Culinary Expert"
-        },
-        {
-            "blogTitle": "Smoothies for Weight Management",
-            "imageUrl": "images/smoothies.webp",
-            "description": "Delicious smoothie recipes to help you stay full and maintain a healthy weight.",
-            "publishDate": "2025-08-16",
-            "author": "Lindiwe Khuzwayo",
-            "profession": "Dietitian"
-        },
-        {
-            "blogTitle": "Boost Your Gut Health Naturally",
-            "imageUrl": "images/gut-health.webp",
-            "description": "Tips and foods that improve digestion and support a healthy gut microbiome.",
-            "publishDate": "2025-08-17",
-            "author": "Dr. Peter Mthembu",
-            "profession": "Health Coach"
-        },
-        {
-            "blogTitle": "Cooking on a Budget Without Losing Nutrition",
-            "imageUrl": "images/budget-cooking.webp",
-            "description": "Learn how to prepare healthy meals without overspending.",
-            "publishDate": "2025-08-18",
-            "author": "Sipho Ndlovu",
-            "profession": "Food Blogger"
-        },
-        {
-            "blogTitle": "Understanding Food Labels",
-            "imageUrl": "images/food-labels.webp",
-            "description": "Learn how to read food labels and make healthier choices at the supermarket.",
-            "publishDate": "2025-08-19",
-            "author": "Dr. Thabo Mokoena",
-            "profession": "Nutritionist"
-        }
-    ]
+  "blogs": [
+    {
+      "blogTitle": "5 Superfoods to Boost Your Immune System",
+      "imageUrl": "images/superfoods.webp",
+      "description": "Discover five nutrient-packed foods that can strengthen your immunity naturally, including kale, garlic, berries, and more.",
+      "publishDate": "2025-08-01",
+      "author": "Dr. Nandi Molefe",
+      "profession": "Nutritionist"
+    },
+    {
+      "blogTitle": "The Secret to Perfectly Roasted Vegetables",
+      "imageUrl": "images/roasted-vegetables.webp",
+      "description": "Learn the techniques and seasoning tips that will make your roasted vegetables taste restaurant-quality every time.",
+      "publishDate": "2025-08-05",
+      "author": "Chef Sipho Khumalo",
+      "profession": "Professional Chef"
+    },
+    {
+      "blogTitle": "Hydration Hacks: Best Drinks for Summer",
+      "imageUrl": "images/hydration.webp",
+      "description": "Stay refreshed and healthy this summer with these hydration tips and healthy drink ideas that go beyond plain water.",
+      "publishDate": "2025-08-08",
+      "author": "Lerato Dlamini",
+      "profession": "Wellness Coach"
+    },
+    {
+      "blogTitle": "The Truth About Protein in Plant-Based Diets",
+      "imageUrl": "images/plant-protein.webp",
+      "description": "Are you getting enough protein on a plant-based diet? Explore the best plant-based protein sources and how to combine them.",
+      "publishDate": "2025-08-10",
+      "author": "Dr. Sipho Ntuli",
+      "profession": "Dietitian"
+    },
+    {
+      "blogTitle": "Quick Healthy Breakfast Ideas",
+      "imageUrl": "images/healthy-breakfast.webp",
+      "description": "Start your day right with these quick, nutritious breakfast recipes that are perfect for busy mornings.",
+      "publishDate": "2025-08-12",
+      "author": "Thandi Mokoena",
+      "profession": "Food Blogger"
+    },
+    {
+      "blogTitle": "Mindful Eating: Tips to Avoid Overeating",
+      "imageUrl": "images/mindful-eating.webp",
+      "description": "Learn how to practice mindful eating and enjoy your meals without overindulging, improving digestion and wellbeing.",
+      "publishDate": "2025-08-13",
+      "author": "Dr. Amanda Khumalo",
+      "profession": "Health Coach"
+    },
+    {
+      "blogTitle": "Plant-Based Snacks for Energy",
+      "imageUrl": "images/plant-snacks.webp",
+      "description": "Simple, nutrient-dense snacks to keep your energy up throughout the day.",
+      "publishDate": "2025-08-14",
+      "author": "Nomsa Dube",
+      "profession": "Nutritionist"
+    },
+    {
+      "blogTitle": "Spices That Boost Metabolism",
+      "imageUrl": "images/spices.webp",
+      "description": "Discover spices that can naturally enhance your metabolism and flavor your meals.",
+      "publishDate": "2025-08-15",
+      "author": "Chef Themba Maseko",
+      "profession": "Culinary Expert"
+    },
+    {
+      "blogTitle": "Smoothies for Weight Management",
+      "imageUrl": "images/smoothies.webp",
+      "description": "Delicious smoothie recipes to help you stay full and maintain a healthy weight.",
+      "publishDate": "2025-08-16",
+      "author": "Lindiwe Khuzwayo",
+      "profession": "Dietitian"
+    },
+    {
+      "blogTitle": "Boost Your Gut Health Naturally",
+      "imageUrl": "images/gut-health.webp",
+      "description": "Tips and foods that improve digestion and support a healthy gut microbiome.",
+      "publishDate": "2025-08-17",
+      "author": "Dr. Peter Mthembu",
+      "profession": "Health Coach"
+    },
+    {
+      "blogTitle": "Cooking on a Budget Without Losing Nutrition",
+      "imageUrl": "images/budget-cooking.webp",
+      "description": "Learn how to prepare healthy meals without overspending.",
+      "publishDate": "2025-08-18",
+      "author": "Sipho Ndlovu",
+      "profession": "Food Blogger"
+    },
+    {
+      "blogTitle": "Understanding Food Labels",
+      "imageUrl": "images/food-labels.webp",
+      "description": "Learn how to read food labels and make healthier choices at the supermarket.",
+      "publishDate": "2025-08-19",
+      "author": "Dr. Thabo Mokoena",
+      "profession": "Nutritionist"
+    }
+  ]
 }
