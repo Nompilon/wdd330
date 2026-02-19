@@ -8,7 +8,6 @@ const searchInput = document.getElementById("recipe-search");
 let currentRecipes = [];
 let currentQuery = "";
 
-// ---------------- Helper Functions ----------------
 function getMembershipName(level) {
   switch (level) {
     case 1: return "Free";
@@ -34,6 +33,9 @@ function createRecipeCard(recipe, includeOverlay = true) {
   const card = document.createElement('section');
   card.classList.add('recipe-card');
 
+  // Always show title
+  const titleHTML = `<h3 class="recipe-title">${recipe.recipeName}</h3>`;
+
   const overlayHTML = includeOverlay ? `
     <div class="image-container">
         <img src="${recipe.imageUrl}" alt="${recipe.recipeName}" loading="lazy" width="300"
@@ -44,6 +46,7 @@ function createRecipeCard(recipe, includeOverlay = true) {
 
   card.innerHTML = `
     ${overlayHTML}
+    ${!includeOverlay ? titleHTML : ''} <!-- show title if no overlay -->
     <div class="info-row">
         <div class="info-origin"><strong>Origin:</strong> ${recipe.origin}</div>
         <div class="info-healthBenefit"><strong>Health Benefits:</strong> ${recipe.healthBenefits}</div>
@@ -113,5 +116,5 @@ if (searchInput) {
 
 // ---------------- Initial Load ----------------
 document.addEventListener("DOMContentLoaded", () => {
-  loadRecipes(); // show 5 random recipes on page load
+  loadRecipes(); 
 });
