@@ -13,7 +13,6 @@ export default defineConfig({
         main: resolve(__dirname, "src/index.html"),
         meals: resolve(__dirname, "src/recipes/index.html"),
         about: resolve(__dirname, "src/about/index.html"),
-        track: resolve(__dirname, "src/tracker/index.html"),
       },
     },
     emptyOutDir: true,

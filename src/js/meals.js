@@ -1,4 +1,3 @@
-// meals.js
 import { getMeals, saveMeals, getGoals } from "./storage.js";
 import { renderNutrientChart } from "./charts.js";
 import { getFoodData } from "./api.js";
@@ -39,6 +38,7 @@ export function initMeals() {
       protein: nutrients.protein * factor,
       carbs: nutrients.carbs * factor,
       fat: nutrients.fat * factor,
+      date: new Date().toISOString().split("T")[0], // YYYY-MM-DD
     };
 
     const meals = getMeals();

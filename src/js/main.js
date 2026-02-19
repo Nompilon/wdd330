@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setupProfileUpload();
   initMeals();
 
-
   const chartCanvas = document.getElementById("nutrient-chart");
   renderNutrientChart(chartCanvas);
 });

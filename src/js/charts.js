@@ -1,3 +1,5 @@
+/* global Chart */
+
 import { getMeals } from "./storage.js";
 
 let chartInstance = null;
@@ -8,7 +10,6 @@ export function renderNutrientChart(ctx) {
   const meals = getMeals();
   if (!meals.length) return;
 
-  // Aggregate daily totals
   const dailyTotals = {};
   meals.forEach((meal) => {
     const date = meal.date

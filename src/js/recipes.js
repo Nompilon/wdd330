@@ -6,14 +6,16 @@ const listBtn = document.getElementById("listViewBtn");
 const searchInput = document.getElementById("recipe-search");
 
 let currentRecipes = [];
-let currentQuery = "";
-
 function getMembershipName(level) {
   switch (level) {
-    case 1: return "Free";
-    case 2: return "Basic";
-    case 3: return "Premium";
-    default: return "Unknown";
+    case 1:
+      return "Free";
+    case 2:
+      return "Basic";
+    case 3:
+      return "Premium";
+    default:
+      return "Unknown";
   }
 }
 
@@ -30,23 +32,25 @@ function mapMealDBRecipe(meal) {
 }
 
 function createRecipeCard(recipe, includeOverlay = true) {
-  const card = document.createElement('section');
-  card.classList.add('recipe-card');
+  const card = document.createElement("section");
+  card.classList.add("recipe-card");
 
   // Always show title
   const titleHTML = `<h3 class="recipe-title">${recipe.recipeName}</h3>`;
 
-  const overlayHTML = includeOverlay ? `
+  const overlayHTML = includeOverlay
+    ? `
     <div class="image-container">
         <img src="${recipe.imageUrl}" alt="${recipe.recipeName}" loading="lazy" width="300"
              onerror="this.src='images/placeholder.webp';">
         <div class="overlay-title">${recipe.recipeName}</div>
     </div>
-  ` : '';
+  `
+    : "";
 
   card.innerHTML = `
     ${overlayHTML}
-    ${!includeOverlay ? titleHTML : ''} <!-- show title if no overlay -->
+    ${!includeOverlay ? titleHTML : ""} <!-- show title if no overlay -->
     <div class="info-row">
         <div class="info-origin"><strong>Origin:</strong> ${recipe.origin}</div>
         <div class="info-healthBenefit"><strong>Health Benefits:</strong> ${recipe.healthBenefits}</div>
@@ -69,7 +73,7 @@ function displayRecipes(recipes, viewType = "grid") {
   cardsContainer.classList.remove("grid-view", "list-view");
   cardsContainer.classList.add(viewType + "-view");
 
-  recipes.forEach(recipe => {
+  recipes.forEach((recipe) => {
     const card = createRecipeCard(recipe, viewType === "grid");
     cardsContainer.appendChild(card);
   });
@@ -91,7 +95,6 @@ async function loadRecipes(query = "") {
     }
 
     currentRecipes = meals.map(mapMealDBRecipe);
-    currentQuery = query;
 
     displayRecipes(currentRecipes, "grid");
   } catch (error) {
@@ -116,5 +119,5 @@ if (searchInput) {
 
 // ---------------- Initial Load ----------------
 document.addEventListener("DOMContentLoaded", () => {
-  loadRecipes(); 
+  loadRecipes();
 });

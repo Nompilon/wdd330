@@ -1,4 +1,3 @@
-// goals.js
 import {
   getGoals as storageGetGoals,
   saveGoals as storageSaveGoals,
