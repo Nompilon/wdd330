@@ -3,9 +3,6 @@ const cardsContainer = document.getElementById("recipes-cards");
 const gridBtn = document.getElementById("gridViewBtn");
 const listBtn = document.getElementById("listViewBtn");
 const spotlightContainer = document.getElementById("spotlights-cards");
-const recipeModal = document.getElementById("recipe-modal");
-const recipeIframe = document.getElementById("recipe-iframe");
-const closeRecipeModal = document.getElementById("close-recipe-modal");
 
 // Helper: convert membershipLevel number to name
 function getMembershipName(level) {
@@ -22,110 +19,125 @@ function getMembershipName(level) {
 }
 
 // Create a recipe card
-// Create a recipe card
 function createRecipeCard(recipe, includeOverlay = true) {
-  const card = document.createElement("section");
-  card.classList.add("recipes-cards");
+    const card = document.createElement('section');
+    card.classList.add('recipes-cards');
 
-  // Image overlay
-  if (includeOverlay) {
-    const overlay = document.createElement("div");
-    overlay.classList.add("image-container");
+    const overlayHTML = includeOverlay ? `
+        <div class="image-container">
+            <img src="${recipe.imageUrl}" alt="${recipe.recipeName}" loading="lazy" width="300"
+                 onerror="this.src='images/placeholder.webp';">
+            <div class="overlay-title">${recipe.recipeName}</div>
+        </div>
+    ` : '';
 
-    const img = document.createElement("img");
-    img.src = recipe.imageUrl;
-    img.alt = recipe.recipeName;
-    img.loading = "lazy";
-    img.width = 300;
-    img.onerror = () => {
-      img.src = "images/placeholder.webp";
-    };
-
-    const titleOverlay = document.createElement("div");
-    titleOverlay.classList.add("overlay-title");
-    titleOverlay.textContent = recipe.recipeName;
-
-    overlay.appendChild(img);
-    overlay.appendChild(titleOverlay);
-    card.appendChild(overlay);
-  }
-
-  // Info row
-  const infoRow = document.createElement("div");
-  infoRow.classList.add("info-row");
-  infoRow.innerHTML = `
-        <div class="info-origin"><strong>Origin:</strong> ${recipe.origin}</div>
-        <div class="info-healthBenefit"><strong>Health Benefits:</strong> ${recipe.healthBenefits}</div>
-        <div class="info-membership"><strong>Membership Level:</strong> ${getMembershipName(recipe.membershipLevel)}</div>
+    card.innerHTML = `
+        ${overlayHTML}
+        <div class="info-row">
+            <div class="info-origin"><strong>Origin:</strong> ${recipe.origin}</div>
+            <div class="info-healthBenefit"><strong>Health Benefits:</strong> ${recipe.healthBenefits}</div>
+            <div class="info-membership"><strong>Membership Level:</strong> ${getMembershipName(recipe.membershipLevel)}</div>
+        </div>
+        <p class="recipe-description">${recipe.description}</p>
+        <a href="${recipe.recipeUrl}" target="_blank">
+            <button class="recipe-btn">View Recipe</button>
+        </a>
     `;
-  card.appendChild(infoRow);
-
-  // Description
-  const description = document.createElement("p");
-  description.classList.add("recipe-description");
-  description.textContent = recipe.description;
-  card.appendChild(description);
-
-  // View Recipe button
-  const btn = document.createElement("button");
-  btn.classList.add("recipe-btn");
-  btn.textContent = "View Recipe";
-  btn.addEventListener("click", () => {
-    recipeIframe.src = recipe.recipeUrl; // load recipe
-    recipeModal.classList.remove("hidden"); // show modal
-  });
-  card.appendChild(btn);
-
-  return card;
+    return card;
 }
 
-// Close modal on X
-closeRecipeModal.addEventListener("click", () => {
-  recipeModal.classList.add("hidden");
-  recipeIframe.src = "";
-});
+// -------- DIRECTORY PAGE LOGIC --------
+if (cardsContainer && gridBtn && listBtn) {
+  let recipesData = [];
 
-// Close modal when clicking outside content
-recipeModal.addEventListener("click", (e) => {
-  if (e.target === recipeModal) {
-    recipeModal.classList.add("hidden");
-    recipeIframe.src = "";
+  async function getRecipes() {
+    try {
+      const response = await fetch(recipesUrl);
+      const data = await response.json();
+      recipesData = data.recipes;
+      displayRecipes("grid");
+    } catch (error) {
+      console.error("Error fetching recipes:", error);
+      cardsContainer.innerHTML = "<p>Unable to load recipes.</p>";
+    }
   }
-});
 
-// ============================
-// Load recipes from JSON
-// ============================
-async function loadRecipes() {
-  try {
-    const res = await fetch(recipesUrl);
-    const data = await res.json();
-    const recipes = data.recipes;
-
+  function displayRecipes(viewType) {
     cardsContainer.innerHTML = "";
-    recipes.forEach((recipe) => {
-      const card = createRecipeCard(recipe);
+    cardsContainer.classList.toggle("grid-view", viewType === "grid");
+    cardsContainer.classList.toggle("list-view", viewType === "list");
+
+    recipesData.forEach(recipe => {
+      const card = createRecipeCard(recipe, viewType === "grid");
       cardsContainer.appendChild(card);
     });
-  } catch (err) {
-    console.error("Error loading recipes:", err);
   }
+
+  gridBtn.addEventListener("click", () => displayRecipes("grid"));
+  listBtn.addEventListener("click", () => displayRecipes("list"));
+
+  getRecipes();
+closeRecipeModal.addEventListener("click", () => {
+    recipeModal.classList.add("hidden");
+    recipeIframe.src = "";
+  });
+
+  recipeModal.addEventListener("click", (e) => {
+    if (e.target === recipeModal) {
+      recipeModal.classList.add("hidden");
+      recipeIframe.src = "";
+    }
+  });
 }
 
-// ============================
-// Grid/List view toggle
-// ============================
-gridBtn.addEventListener("click", () => {
-  cardsContainer.classList.add("grid-view");
-  cardsContainer.classList.remove("list-view");
-});
+document.addEventListener("DOMContentLoaded", () => {
+  const recipesDiv = document.getElementById("recipes-section");
 
-listBtn.addEventListener("click", () => {
-  cardsContainer.classList.add("list-view");
-  cardsContainer.classList.remove("grid-view");
-});
+  async function loadRecipes() {
+    try {
+      const response = await fetch("../json/recipes.json");
+      const data = await response.json();
 
-// ============================
-// Initialize
-// ============================
-loadRecipes();
+      const recipes = data.recipes;
+
+      displayRecipes(recipes);
+
+    } catch (error) {
+      console.error("Error loading recipes:", error);
+      recipesDiv.innerHTML = "<p>Failed to load recipes.</p>";
+    }
+  }
+
+  function displayRecipes(recipes) {
+    recipesDiv.innerHTML = "";
+
+    recipes.forEach(recipe => {
+
+      const card = document.createElement("div");
+      card.classList.add("recipe-card");
+
+      const img = document.createElement("img");
+      img.src = recipe.imageUrl;
+      img.alt = recipe.recipeName;
+      img.loading = "lazy";
+
+      const title = document.createElement("h3");
+      title.textContent = recipe.recipeName;
+
+      const button = document.createElement("button");
+      button.textContent = "View Recipe";
+
+      button.addEventListener("click", () => {
+        window.open(recipe.recipeUrl, "_blank");
+      });
+
+      card.appendChild(img);
+      card.appendChild(title);
+      card.appendChild(button);
+
+      recipesDiv.appendChild(card);
+    });
+  }
+
+  loadRecipes();
+});

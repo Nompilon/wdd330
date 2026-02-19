@@ -1,24 +1,30 @@
-const profileImg = document.getElementById("profile-img");
-const profileInput = document.getElementById("profile-upload");
+export function getMeals() {
+  return JSON.parse(localStorage.getItem("meals")) || [];
+}
 
-// Load saved image on page load
-window.addEventListener("DOMContentLoaded", () => {
-  const savedImage = localStorage.getItem("profileImage");
-  if (savedImage) {
-    profileImg.src = savedImage;
-  }
-});
+export function saveMeals(meals) {
+  localStorage.setItem("meals", JSON.stringify(meals));
+}
 
-// Handle new upload
-profileInput.addEventListener("change", (event) => {
-  const file = event.target.files[0];
-  if (!file) return;
+export function getGoals() {
+  return (
+    JSON.parse(localStorage.getItem("goals")) || {
+      calories: 2000,
+      protein: 150,
+      carbs: 250,
+      fat: 70,
+    }
+  );
+}
 
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    const imageData = e.target.result;
-    profileImg.src = imageData;
-    localStorage.setItem("profileImage", imageData);
-  };
-  reader.readAsDataURL(file);
-});
+export function saveGoals(goals) {
+  localStorage.setItem("goals", JSON.stringify(goals));
+}
+
+export function getProfileImage() {
+  return localStorage.getItem("profileImage") || null;
+}
+
+export function saveProfileImage(imageData) {
+  localStorage.setItem("profileImage", imageData);
+}

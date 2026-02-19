@@ -1,10 +1,13 @@
+// goals.js
+import {
+  getGoals as storageGetGoals,
+  saveGoals as storageSaveGoals,
+} from "./storage.js";
+
 export function getGoals() {
-  return (
-    JSON.parse(localStorage.getItem("goals")) || {
-      calories: 2000,
-      protein: 150,
-      carbs: 250,
-      fat: 70,
-    }
-  );
+  return storageGetGoals();
+}
+
+export function saveGoals(goals) {
+  storageSaveGoals(goals);
 }
