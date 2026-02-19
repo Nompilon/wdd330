@@ -497,7 +497,6 @@ p {
   justify-content: space-evenly;
   background-color: var(--dropdown-hover);
   border-radius: 0.5rem;
-  color: var();
 }
 .edit-meal:hover,
 .delete-meal:hover {
