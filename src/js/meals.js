@@ -1,6 +1,7 @@
 // meals.js
 import { getMeals, saveMeals, getGoals } from "./storage.js";
 import { renderNutrientChart } from "./charts.js";
+import { getFoodData } from "./api.js";
 
 let editingIndex = null;
 
@@ -13,7 +14,7 @@ export function initMeals() {
   if (!mealForm || !mealLog || nutrientDivs.length === 0 || !mealModal) return;
 
   // Handle form submission (Add or Edit)
-  mealForm.addEventListener("submit", (e) => {
+  mealForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const mealType = document.getElementById("meal-type").value;
@@ -24,14 +25,20 @@ export function initMeals() {
       return alert("Enter valid meal info.");
     }
 
+    // Fetch nutrient info from API
+    const nutrients = await getFoodData(foodName);
+    if (!nutrients) return alert("Food not found in database.");
+
+    // Multiply nutrients by portion (assuming portion is in grams)
+    const factor = portion / 100; // USDA API nutrients are per 100g
     const mealData = {
       mealType,
       foodName,
       portion,
-      calories: portion * 2,
-      protein: portion * 0.1,
-      carbs: portion * 0.2,
-      fat: portion * 0.05,
+      calories: nutrients.calories * factor,
+      protein: nutrients.protein * factor,
+      carbs: nutrients.carbs * factor,
+      fat: nutrients.fat * factor,
     };
 
     const meals = getMeals();

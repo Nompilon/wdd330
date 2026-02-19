@@ -392,6 +392,20 @@ button:hover {
   font-weight: 900;
   font-size: small;
 }
+
+#recipes-cards.grid-view {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+#recipes-cards.list-view {
+  display: block;
+}
+
+#recipes-cards.list-view .recipe-card {
+  margin-bottom: 1rem;
+}
 /* ================================
    FOOTER
 ================================ */

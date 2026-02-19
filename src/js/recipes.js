@@ -1,143 +1,117 @@
-const recipesUrl = "../json/recipes.json";
+import { searchRecipes, getRandomRecipe } from "./mealdb.js";
+
 const cardsContainer = document.getElementById("recipes-cards");
 const gridBtn = document.getElementById("gridViewBtn");
 const listBtn = document.getElementById("listViewBtn");
-const spotlightContainer = document.getElementById("spotlights-cards");
+const searchInput = document.getElementById("recipe-search");
 
-// Helper: convert membershipLevel number to name
+let currentRecipes = [];
+let currentQuery = "";
+
+// ---------------- Helper Functions ----------------
 function getMembershipName(level) {
   switch (level) {
-    case 1:
-      return "Free";
-    case 2:
-      return "Basic";
-    case 3:
-      return "Premium";
-    default:
-      return "Unknown";
+    case 1: return "Free";
+    case 2: return "Basic";
+    case 3: return "Premium";
+    default: return "Unknown";
   }
 }
 
-// Create a recipe card
+function mapMealDBRecipe(meal) {
+  return {
+    recipeName: meal.strMeal,
+    healthBenefits: meal.strCategory || "",
+    origin: meal.strArea || "",
+    recipeUrl: meal.strSource || meal.strYoutube || "#",
+    imageUrl: meal.strMealThumb || "images/placeholder.webp",
+    membershipLevel: 1,
+    description: meal.strInstructions || "",
+  };
+}
+
 function createRecipeCard(recipe, includeOverlay = true) {
-    const card = document.createElement('section');
-    card.classList.add('recipes-cards');
+  const card = document.createElement('section');
+  card.classList.add('recipe-card');
 
-    const overlayHTML = includeOverlay ? `
-        <div class="image-container">
-            <img src="${recipe.imageUrl}" alt="${recipe.recipeName}" loading="lazy" width="300"
-                 onerror="this.src='images/placeholder.webp';">
-            <div class="overlay-title">${recipe.recipeName}</div>
-        </div>
-    ` : '';
+  const overlayHTML = includeOverlay ? `
+    <div class="image-container">
+        <img src="${recipe.imageUrl}" alt="${recipe.recipeName}" loading="lazy" width="300"
+             onerror="this.src='images/placeholder.webp';">
+        <div class="overlay-title">${recipe.recipeName}</div>
+    </div>
+  ` : '';
 
-    card.innerHTML = `
-        ${overlayHTML}
-        <div class="info-row">
-            <div class="info-origin"><strong>Origin:</strong> ${recipe.origin}</div>
-            <div class="info-healthBenefit"><strong>Health Benefits:</strong> ${recipe.healthBenefits}</div>
-            <div class="info-membership"><strong>Membership Level:</strong> ${getMembershipName(recipe.membershipLevel)}</div>
-        </div>
-        <p class="recipe-description">${recipe.description}</p>
-        <a href="${recipe.recipeUrl}" target="_blank">
-            <button class="recipe-btn">View Recipe</button>
-        </a>
-    `;
-    return card;
+  card.innerHTML = `
+    ${overlayHTML}
+    <div class="info-row">
+        <div class="info-origin"><strong>Origin:</strong> ${recipe.origin}</div>
+        <div class="info-healthBenefit"><strong>Health Benefits:</strong> ${recipe.healthBenefits}</div>
+        <div class="info-membership"><strong>Membership Level:</strong> ${getMembershipName(recipe.membershipLevel)}</div>
+    </div>
+    <p class="recipe-description">${recipe.description.substring(0, 150)}...</p>
+    <a href="${recipe.recipeUrl}" target="_blank">
+        <button class="recipe-btn">View Recipe</button>
+    </a>
+  `;
+
+  return card;
 }
 
-// -------- DIRECTORY PAGE LOGIC --------
-if (cardsContainer && gridBtn && listBtn) {
-  let recipesData = [];
+// ---------------- Display Recipes ----------------
+function displayRecipes(recipes, viewType = "grid") {
+  if (!cardsContainer) return;
 
-  async function getRecipes() {
-    try {
-      const response = await fetch(recipesUrl);
-      const data = await response.json();
-      recipesData = data.recipes;
-      displayRecipes("grid");
-    } catch (error) {
-      console.error("Error fetching recipes:", error);
-      cardsContainer.innerHTML = "<p>Unable to load recipes.</p>";
-    }
-  }
+  cardsContainer.innerHTML = "";
+  cardsContainer.classList.remove("grid-view", "list-view");
+  cardsContainer.classList.add(viewType + "-view");
 
-  function displayRecipes(viewType) {
-    cardsContainer.innerHTML = "";
-    cardsContainer.classList.toggle("grid-view", viewType === "grid");
-    cardsContainer.classList.toggle("list-view", viewType === "list");
-
-    recipesData.forEach(recipe => {
-      const card = createRecipeCard(recipe, viewType === "grid");
-      cardsContainer.appendChild(card);
-    });
-  }
-
-  gridBtn.addEventListener("click", () => displayRecipes("grid"));
-  listBtn.addEventListener("click", () => displayRecipes("list"));
-
-  getRecipes();
-closeRecipeModal.addEventListener("click", () => {
-    recipeModal.classList.add("hidden");
-    recipeIframe.src = "";
-  });
-
-  recipeModal.addEventListener("click", (e) => {
-    if (e.target === recipeModal) {
-      recipeModal.classList.add("hidden");
-      recipeIframe.src = "";
-    }
+  recipes.forEach(recipe => {
+    const card = createRecipeCard(recipe, viewType === "grid");
+    cardsContainer.appendChild(card);
   });
 }
 
+// ---------------- Fetch Recipes ----------------
+async function loadRecipes(query = "") {
+  if (!cardsContainer) return;
+
+  try {
+    let meals = [];
+    if (!query) {
+      // Empty search: get 5 random recipes
+      const randomPromises = Array.from({ length: 5 }, () => getRandomRecipe());
+      const randomMeals = await Promise.all(randomPromises);
+      meals = randomMeals.filter(Boolean); // remove any nulls
+    } else {
+      meals = await searchRecipes(query);
+    }
+
+    currentRecipes = meals.map(mapMealDBRecipe);
+    currentQuery = query;
+
+    displayRecipes(currentRecipes, "grid");
+  } catch (error) {
+    console.error("Error fetching recipes:", error);
+    cardsContainer.innerHTML = "<p>Unable to load recipes.</p>";
+  }
+}
+
+// ---------------- Grid/List Toggle ----------------
+gridBtn.addEventListener("click", () => displayRecipes(currentRecipes, "grid"));
+listBtn.addEventListener("click", () => displayRecipes(currentRecipes, "list"));
+
+// ---------------- Live Search ----------------
+if (searchInput) {
+  let debounceTimeout;
+  searchInput.addEventListener("input", () => {
+    clearTimeout(debounceTimeout);
+    const query = searchInput.value.trim();
+    debounceTimeout = setTimeout(() => loadRecipes(query), 500);
+  });
+}
+
+// ---------------- Initial Load ----------------
 document.addEventListener("DOMContentLoaded", () => {
-  const recipesDiv = document.getElementById("recipes-section");
-
-  async function loadRecipes() {
-    try {
-      const response = await fetch("../json/recipes.json");
-      const data = await response.json();
-
-      const recipes = data.recipes;
-
-      displayRecipes(recipes);
-
-    } catch (error) {
-      console.error("Error loading recipes:", error);
-      recipesDiv.innerHTML = "<p>Failed to load recipes.</p>";
-    }
-  }
-
-  function displayRecipes(recipes) {
-    recipesDiv.innerHTML = "";
-
-    recipes.forEach(recipe => {
-
-      const card = document.createElement("div");
-      card.classList.add("recipe-card");
-
-      const img = document.createElement("img");
-      img.src = recipe.imageUrl;
-      img.alt = recipe.recipeName;
-      img.loading = "lazy";
-
-      const title = document.createElement("h3");
-      title.textContent = recipe.recipeName;
-
-      const button = document.createElement("button");
-      button.textContent = "View Recipe";
-
-      button.addEventListener("click", () => {
-        window.open(recipe.recipeUrl, "_blank");
-      });
-
-      card.appendChild(img);
-      card.appendChild(title);
-      card.appendChild(button);
-
-      recipesDiv.appendChild(card);
-    });
-  }
-
-  loadRecipes();
+  loadRecipes(); // show 5 random recipes on page load
 });

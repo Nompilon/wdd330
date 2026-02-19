@@ -1,4 +1,3 @@
-// api.js
 const API_KEY = "l3MBTuUIJoqsUO9IvnLe8wKSDqT6dRQaTyLs7GTE";
 
 export async function searchFoods(query, signal) {
