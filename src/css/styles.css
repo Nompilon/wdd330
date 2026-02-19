@@ -469,6 +469,9 @@ p {
 /* ================================
    ANIMATIONS
 ================================ */
+.recipe-card {
+  animation: popIn 1s ease forwards;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
