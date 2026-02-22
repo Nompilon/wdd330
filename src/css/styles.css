@@ -47,6 +47,7 @@
 body {
   background: var(--background-main);
   color: var(--text);
+  font-size: 1rem;
 }
 
 a {
@@ -514,6 +515,7 @@ p {
   #main-container {
     /*flex-direction: row;*/
     margin-right: 220px;
+    font-size: 1.5rem;
   }
 
   .menu-container.mobile-menu {
