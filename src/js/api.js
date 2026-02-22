@@ -10,23 +10,31 @@ export async function searchFoods(query, signal) {
 }
 
 export async function getFoodData(foodName) {
-  const res = await fetch(
-    `https://api.nal.usda.gov/fdc/v1/foods/search?query=${encodeURIComponent(foodName)}&pageSize=1&api_key=${API_KEY}`,
-  );
-  const data = await res.json();
-  const food = data.foods?.[0];
-  if (!food) return null;
+  try {
+    const res = await fetch(
+      `https://api.nal.usda.gov/fdc/v1/foods/search?query=${encodeURIComponent(foodName)}&pageSize=1&api_key=${API_KEY}`,
+    );
 
-  const nutrients = { calories: 0, protein: 0, carbs: 0, fat: 0 };
-  food.foodNutrients?.forEach((n) => {
-    const name = n.nutrientName?.toLowerCase() || "";
-    const value = Number(n.value) || 0;
-    if (n.nutrientId === 1008) nutrients.calories = value;
-    else if (name.includes("protein")) nutrients.protein = value;
-    else if (name.includes("carbohydrate")) nutrients.carbs = value;
-    else if (name.includes("total lipid") || name.includes("fat"))
-      nutrients.fat = value;
-  });
+    if (!res.ok) throw new Error(`API error: ${res.status}`);
 
-  return nutrients;
+    const data = await res.json();
+    const food = data.foods?.[0];
+    if (!food) return null;
+
+    const nutrients = { calories: 0, protein: 0, carbs: 0, fat: 0 };
+    food.foodNutrients?.forEach((n) => {
+      const name = n.nutrientName?.toLowerCase() || "";
+      const value = Number(n.value) || 0;
+      if (n.nutrientId === 1008) nutrients.calories = value;
+      else if (name.includes("protein")) nutrients.protein = value;
+      else if (name.includes("carbohydrate")) nutrients.carbs = value;
+      else if (name.includes("total lipid") || name.includes("fat"))
+        nutrients.fat = value;
+    });
+
+    return nutrients;
+  } catch (err) {
+    console.error("getFoodData error:", err);
+    return null; // will trigger "Food not found" alert in form
+  }
 }

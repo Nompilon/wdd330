@@ -2,19 +2,6 @@
 import { getProfileImage, saveProfileImage } from "./storage.js";
 import { searchFoods } from "./api.js";
 
-export function setupModal() {
-  const addMealBtn = document.getElementById("open-meal-modal");
-  const mealModal = document.getElementById("meal-modal");
-  const closeModal = document.getElementById("close-meal-modal");
-
-  if (!addMealBtn || !mealModal || !closeModal) return;
-
-  addMealBtn.addEventListener("click", () =>
-    mealModal.classList.remove("hidden"),
-  );
-  closeModal.addEventListener("click", () => mealModal.classList.add("hidden"));
-}
-
 export function setupProfileUpload() {
   const profileImg = document.getElementById("profile-img");
   const profileInput = document.getElementById("profile-upload");

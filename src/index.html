@@ -3,13 +3,20 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WDD330-Web Fronted Development II - Ngwenya Nompilo - NutriTrack Hub web application project">
+    <meta name="author" content="Nompilo Ngwenya">
     <title>NutriTrack Hub | Home</title>
+    <meta property="og:title" content="NutriTrack Hub - Home page">
+    <meta property="og:description" content="Home page for the NutriTrack Hub Project - Nompilo Ngwenya">
+    <meta property="og:url" content="https://nompilon.github.io/wdd330/src/index">
     <link rel="stylesheet" href="/css/styles.css">
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet">
     <link rel="icon" href="images/nutrition_icon_136342.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap" rel="stylesheet">
   </head>
 
   <body>
@@ -55,7 +62,8 @@
               src="images/default-profile-picture.svg"
               alt="User profile"
               id="profile-img"
-              class="profile-img">
+              class="profile-img"
+            />
           </label>
           <input type="file" id="profile-upload" accept="image/*" hidden />
         </div>
@@ -159,7 +167,7 @@
             <li>
               <a href="https://www.instagram.com/"
                 ><img src="../images/instagram.svg" alt="Instagram"
-              /></a>
+              ></a>
             </li>
             <li>
               <a href="https://www.facebook.com/"
@@ -185,70 +193,6 @@
         </nav>
       </footer>
     </div>
-    <script type="module" src="/js/main.js"></script>
-    <canvas id="nutrient-chart" width="600" height="300"></canvas>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-      const ctx = document.getElementById("nutrient-chart");
-
-      // Example data for presentation
-      const labels = ["2026-02-16", "2026-02-17", "2026-02-18", "2026-02-19"];
-      const caloriesData = [1800, 2100, 1950, 2000];
-      const proteinData = [90, 110, 100, 105];
-      const carbsData = [220, 250, 230, 240];
-      const fatData = [70, 85, 75, 80];
-
-      const data = {
-        labels,
-        datasets: [
-          {
-            label: "Calories (kcal)",
-            data: caloriesData,
-            borderColor: "red",
-            backgroundColor: "rgba(255,0,0,0.2)",
-            tension: 0.3,
-          },
-          {
-            label: "Protein (g)",
-            data: proteinData,
-            borderColor: "blue",
-            backgroundColor: "rgba(0,0,255,0.2)",
-            tension: 0.3,
-          },
-          {
-            label: "Carbs (g)",
-            data: carbsData,
-            borderColor: "orange",
-            backgroundColor: "rgba(255,165,0,0.2)",
-            tension: 0.3,
-          },
-          {
-            label: "Fat (g)",
-            data: fatData,
-            borderColor: "green",
-            backgroundColor: "rgba(0,128,0,0.2)",
-            tension: 0.3,
-          },
-        ],
-      };
-
-      const config = {
-        type: "line",
-        data,
-        options: {
-          responsive: true,
-          plugins: {
-            legend: { position: "top" },
-            title: { display: true, text: "Example Daily Nutrient Comparison" },
-          },
-          scales: {
-            y: { beginAtZero: true },
-            x: { title: { display: true, text: "Date" } },
-          },
-        },
-      };
-
-      new Chart(ctx, config);
-    </script>
+    <script type="module" src="js/main.js"></script>
   </body>
 </html>

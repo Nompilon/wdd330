@@ -9,10 +9,32 @@ export function initMeals() {
   const mealLog = document.getElementById("recent-meals");
   const nutrientDivs = document.querySelectorAll(".summary .nutrient");
   const mealModal = document.getElementById("meal-modal");
+  const openMealBtn = document.getElementById("open-meal-modal");
+  const closeMealBtn = document.getElementById("close-meal-modal");
 
-  if (!mealForm || !mealLog || nutrientDivs.length === 0 || !mealModal) return;
+  if (
+    !mealForm ||
+    !mealLog ||
+    nutrientDivs.length === 0 ||
+    !mealModal ||
+    !openMealBtn ||
+    !closeMealBtn
+  )
+    return;
 
-  // Handle form submission (Add or Edit)
+  // --- Open Modal ---
+  openMealBtn.addEventListener("click", () => {
+    mealForm.reset();
+    editingIndex = null;
+    mealModal.classList.remove("hidden");
+  });
+
+  // --- Close Modal ---
+  closeMealBtn.addEventListener("click", () => {
+    mealModal.classList.add("hidden");
+  });
+
+  // --- Handle Form Submission ---
   mealForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -24,11 +46,17 @@ export function initMeals() {
       return alert("Enter valid meal info.");
     }
 
-    // Fetch nutrient info from API
-    const nutrients = await getFoodData(foodName);
-    if (!nutrients) return alert("Food not found in database.");
+    // --- Fetch Nutrient Data Safely ---
+    let nutrients;
+    try {
+      nutrients = await getFoodData(foodName);
+      if (!nutrients) throw new Error("Food not found in database.");
+    } catch (err) {
+      console.error(err);
+      return alert(err.message);
+    }
 
-    // Multiply nutrients by portion (assuming portion is in grams)
+    // --- Scale Nutrients by Portion ---
     const factor = portion / 100; // USDA API nutrients are per 100g
     const mealData = {
       mealType,
@@ -38,7 +66,7 @@ export function initMeals() {
       protein: nutrients.protein * factor,
       carbs: nutrients.carbs * factor,
       fat: nutrients.fat * factor,
-      date: new Date().toISOString().split("T")[0], // YYYY-MM-DD
+      date: new Date().toISOString().split("T")[0],
     };
 
     const meals = getMeals();
@@ -51,16 +79,15 @@ export function initMeals() {
 
     saveMeals(meals);
 
-    // Reload meals and chart
+    // --- Reload UI ---
     loadMeals(mealLog, nutrientDivs);
     renderNutrientChart(document.getElementById("nutrient-chart"));
 
-    // Reset form and hide modal
     mealForm.reset();
     mealModal.classList.add("hidden");
   });
 
-  // Initial load
+  // --- Initial Load ---
   loadMeals(mealLog, nutrientDivs);
   renderNutrientChart(document.getElementById("nutrient-chart"));
 }
@@ -82,7 +109,7 @@ export function loadMeals(mealLog, nutrientDivs) {
 
       const li = document.createElement("li");
       li.innerHTML = `
-      ${meal.mealType}: ${meal.foodName} (${meal.portion}g) — ${meal.calories} kcal
+      ${meal.mealType}: ${meal.foodName} (${meal.portion}g) — ${meal.calories.toFixed(1)} kcal
       <span class="meal-actions">
         <a href="#" class="edit-meal">Edit</a> |
         <a href="#" class="delete-meal">Delete</a>
@@ -92,7 +119,7 @@ export function loadMeals(mealLog, nutrientDivs) {
       const mealModal = document.getElementById("meal-modal");
       const realIndex = meals.length - 1 - index;
 
-      // Edit meal
+      // --- Edit Meal ---
       li.querySelector(".edit-meal").addEventListener("click", (e) => {
         e.preventDefault();
         document.getElementById("meal-type").value = meal.mealType;
@@ -102,13 +129,13 @@ export function loadMeals(mealLog, nutrientDivs) {
         mealModal.classList.remove("hidden");
       });
 
-      // Delete meal
+      // --- Delete Meal ---
       li.querySelector(".delete-meal").addEventListener("click", (e) => {
         e.preventDefault();
         const updatedMeals = meals.filter((_, i) => i !== realIndex);
         saveMeals(updatedMeals);
         loadMeals(mealLog, nutrientDivs);
-        renderNutrientChart(document.getElementById("nutrient-chart")); // update chart
+        renderNutrientChart(document.getElementById("nutrient-chart"));
       });
 
       mealLog.appendChild(li);

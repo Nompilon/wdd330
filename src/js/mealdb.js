@@ -4,7 +4,7 @@ export async function searchRecipes(query) {
     `https://www.themealdb.com/api/json/v1/1/search.php?s=${encodeURIComponent(query)}`,
   );
   const data = await res.json();
-  return data.meals || []; 
+  return data.meals || [];
 }
 
 export async function getRandomRecipe() {
